@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import "@fontsource/alexandria/300.css";
+import "@fontsource/alexandria/700.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
