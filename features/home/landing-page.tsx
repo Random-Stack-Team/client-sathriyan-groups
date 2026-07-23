@@ -28,12 +28,6 @@ const socialItems = [
   { name: "Phone", icon: "/assets/home/phone.png", iconClassName: "size-7" },
 ];
 
-const heroStats = [
-  { value: "07", label: "group divisions" },
-  { value: "07", label: "sectors covered" },
-  { value: "03", label: "core values" },
-];
-
 const ecosystemClusters = [
   {
     title: "Property",
@@ -93,25 +87,33 @@ function HeroSection() {
           <p className="mt-7 max-w-[660px] text-[17px] leading-8 text-white/78 md:text-xl md:leading-9">
             {companyProfile.summary}
           </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-            <Link
-              href="/services"
-              className="group ease-brand hover:text-brand-gold inline-flex items-center gap-3 text-sm font-bold text-white transition duration-700"
-            >
-              <span>Explore group</span>
-              <span className="group-hover:border-brand-gold/70 grid size-7 place-items-center border border-white/22 transition duration-700 group-hover:translate-x-1">
-                <ArrowUpRight className="size-3.5" />
-              </span>
-            </Link>
-            <Link
-              href="/contact"
-              className="group ease-brand inline-flex items-center gap-3 text-sm font-semibold text-white/68 transition duration-700 hover:text-white"
-            >
-              <span className="grid size-7 place-items-center border border-white/18 transition duration-700 group-hover:border-white/60">
-                <ArrowUpRight className="size-3.5 rotate-45 transition duration-700 group-hover:rotate-0" />
-              </span>
-              <span>Contact office</span>
-            </Link>
+          <div className="mt-10 max-w-[560px] border-y border-white/16 py-4">
+            <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+              <Link
+                href="/services"
+                className="group ease-brand hover:text-brand-gold grid gap-1 text-white transition duration-700 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-5"
+              >
+                <span>
+                  <span className="block text-base font-bold">
+                    Explore the group
+                  </span>
+                  <span className="mt-1 block text-sm leading-6 text-white/56 transition duration-700 group-hover:text-white/72">
+                    See the divisions, sectors, and operating model.
+                  </span>
+                </span>
+                <span className="group-hover:border-brand-gold/70 mt-2 grid size-9 place-items-center border border-white/18 transition duration-700 group-hover:translate-x-1 sm:mt-0">
+                  <ArrowUpRight className="size-4" />
+                </span>
+              </Link>
+
+              <Link
+                href="/contact"
+                className="group ease-brand inline-flex items-center justify-between gap-4 border-t border-white/10 pt-3 text-sm font-semibold text-white/64 transition duration-700 hover:text-white sm:border-t-0 sm:border-l sm:pt-0 sm:pl-6"
+              >
+                <span>Contact office</span>
+                <ArrowUpRight className="text-brand-gold size-3.5 rotate-45 transition duration-700 group-hover:rotate-0" />
+              </Link>
+            </div>
           </div>
         </Reveal>
 
@@ -122,36 +124,36 @@ function HeroSection() {
         >
           <div className="border border-white/16 bg-white/8 p-5 backdrop-blur-xl">
             <p className="text-xs font-bold tracking-[0.18em] text-white/58 uppercase">
-              Operating across
+              First look
+            </p>
+            <p className="mt-3 max-w-[290px] text-sm leading-6 text-white/58">
+              A quick entry into property, events, and brand-led business
+              verticals.
             </p>
             <div className="mt-5 grid gap-4">
-              {companyDivisions.slice(0, 5).map((division) => (
+              {companyDivisions.slice(0, 3).map((division) => (
                 <Link
                   key={division.slug}
                   href={`/services/${division.slug}`}
-                  className="group flex items-center justify-between border-b border-white/12 pb-4 text-sm font-bold text-white/86 transition duration-700 hover:text-white"
+                  className="group grid gap-1 border-b border-white/12 pb-4 transition duration-700 hover:text-white"
                 >
-                  <span>{division.name}</span>
-                  <ArrowUpRight className="text-brand-gold size-4 opacity-0 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                  <span className="text-brand-gold text-[10px] font-bold tracking-[0.16em] uppercase">
+                    {division.sector}
+                  </span>
+                  <span className="flex items-center justify-between gap-4 text-sm font-bold text-white/86">
+                    {division.name}
+                    <ArrowUpRight className="size-4 opacity-0 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                  </span>
                 </Link>
               ))}
             </div>
-          </div>
-
-          <div className="mt-5 grid grid-cols-3 border-y border-white/14 py-4">
-            {heroStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="border-r border-white/12 px-4 first:pl-0 last:border-r-0 last:pr-0"
-              >
-                <p className="font-display text-[30px] leading-none font-bold text-white">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-[11px] leading-4 font-semibold text-white/52">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+            <Link
+              href="/services"
+              className="hover:text-brand-gold mt-5 inline-flex items-center gap-2 text-xs font-bold tracking-[0.12em] text-white/62 uppercase transition duration-700"
+            >
+              View all divisions
+              <ArrowUpRight className="size-3.5" />
+            </Link>
           </div>
         </Reveal>
       </div>
@@ -222,7 +224,7 @@ function OverviewSection() {
             </p>
 
             <div className="mt-12 grid border-t border-black/8">
-              {companyDivisions.slice(0, 5).map((division) => (
+              {companyDivisions.map((division) => (
                 <Link
                   key={division.slug}
                   href={`/services/${division.slug}`}
@@ -241,23 +243,65 @@ function OverviewSection() {
           </div>
         </Reveal>
 
-        <div className="grid gap-0 pt-10">
-          {companyProfile.foundations.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.08}>
-              <article className="grid gap-4 border-b border-black/8 py-7 last:border-b-0 md:grid-cols-[180px_0.55fr_1fr] md:items-start">
-                <span className="text-brand-muted-light text-xs font-bold">
-                  0{index + 1}
-                </span>
-                <h3 className="text-brand-ink text-xl font-bold">
-                  {item.title}
-                </h3>
-                <p className="text-brand-muted max-w-[520px] text-sm leading-7 md:justify-self-end">
-                  {item.description}
-                </p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="pt-14">
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">
+                Operating Code
+              </p>
+              <h3 className="font-display text-brand-ink mt-4 max-w-[420px] text-[32px] leading-tight font-bold md:text-[44px]">
+                Three values. One operating standard.
+              </h3>
+            </div>
+            <p className="text-brand-muted max-w-[620px] text-base leading-8 lg:justify-self-end">
+              Each division has its own market, but the group is held together
+              by the same decision-making principles.
+            </p>
+          </div>
+
+          <div className="mt-10 border-y border-black/8 py-8">
+            <div className="grid gap-0 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
+              {companyProfile.foundations.map((item, index) => (
+                <div key={item.title} className="contents">
+                  <article className="group py-6 lg:py-0">
+                    <div className="flex items-center justify-between gap-4 lg:block">
+                      <span className="font-display text-brand-muted-light text-3xl leading-none font-bold">
+                        0{index + 1}
+                      </span>
+                      <span className="hidden h-px flex-1 bg-black/10 sm:block lg:mt-7" />
+                    </div>
+                    <h4 className="font-display text-brand-ink mt-4 text-[28px] leading-tight font-bold">
+                      {item.title}
+                    </h4>
+                    <p className="text-brand-muted mt-4 max-w-[330px] text-sm leading-7">
+                      {item.description}
+                    </p>
+                  </article>
+
+                  {index < companyProfile.foundations.length - 1 ? (
+                    <div
+                      aria-hidden="true"
+                      className="text-brand-gold-deep hidden px-7 lg:flex lg:items-start lg:pt-12"
+                    >
+                      <span className="font-display text-5xl leading-none">
+                        +
+                      </span>
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 border-t border-black/8 pt-6 lg:flex lg:items-center lg:justify-between">
+              <p className="text-brand-muted text-xs font-bold tracking-[0.18em] uppercase">
+                Result
+              </p>
+              <p className="font-display text-brand-ink mt-3 max-w-[780px] text-[28px] leading-tight font-bold md:text-[38px] lg:mt-0 lg:text-right">
+                One shared standard across every Sathriyan company.
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export type NavItem = {
@@ -12,6 +13,7 @@ export type NavItem = {
 
 export function Header({ navItems }: { navItems: NavItem[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="absolute inset-x-0 top-0 z-20">
@@ -41,7 +43,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 key={item.label}
                 href={item.href}
                 className={`relative rounded-full px-5 py-3 text-sm leading-5 font-bold text-white/80 transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
-                  item.href === "/"
+                  pathname === item.href
                     ? "bg-white/18 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-white/24"
                     : "hover:text-brand-gold hover:bg-white/10"
                 }`}
@@ -73,7 +75,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className={`block rounded-[10px] px-4 py-3 text-sm font-bold transition duration-300 ${
-                  item.href === "/"
+                  pathname === item.href
                     ? "text-brand-ink bg-white"
                     : "hover:text-brand-gold text-white hover:bg-white/10"
                 }`}
