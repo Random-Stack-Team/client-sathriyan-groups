@@ -177,13 +177,6 @@ function Header() {
           </div>
         </nav>
 
-        <Link
-          href="/contact"
-          className="hidden h-11 items-center justify-center rounded-full border border-white/18 bg-[#0b1420]/28 px-5 text-sm font-bold text-white shadow-[0_14px_34px_rgba(0,0,0,0.16)] backdrop-blur-2xl transition duration-300 hover:bg-white hover:text-[#111827] lg:inline-flex"
-        >
-          Enquire
-        </Link>
-
         <button
           type="button"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
@@ -419,42 +412,81 @@ function EventDetail({
 }
 
 function Footer() {
+  const quickLinks = navItems.filter((item) => item.label !== "Home");
+
   return (
-    <footer className="bg-[#102030] px-6 text-white md:px-0">
-      <div className="mx-auto max-w-[1240px] pt-16 pb-5">
-        <div className="grid gap-12 md:grid-cols-[220px_1fr] md:gap-20">
-          <div>
+    <footer className="bg-[#0b1420] px-6 text-white md:px-0">
+      <div className="mx-auto max-w-[1240px] py-10 md:py-12">
+        <div className="grid gap-10 border-b border-white/10 pb-9 lg:grid-cols-[0.8fr_1.55fr] lg:gap-16">
+          <div className="max-w-[340px]">
             <Image
-              src="/assets/logo/sathriyan-logo-emblem.png"
-              alt="Sathriyan Group emblem"
-              width={160}
+              src="/assets/logo/sathriyan-group-logo-no-bg.png"
+              alt="Sathriyan Group"
+              width={420}
               height={160}
-              className="size-[130px] object-contain md:size-[160px]"
+              className="h-auto w-[185px] object-contain"
             />
-            <p className="mt-5 max-w-[220px] text-sm leading-6 text-white/68">
+            <p className="font-display mt-5 text-xl leading-tight font-bold md:text-[26px]">
               {companyProfile.tagline}
             </p>
+            <p className="mt-4 line-clamp-3 text-sm leading-6 text-white/56">
+              {companyProfile.summary}
+            </p>
+
+            <div className="mt-6 flex items-center gap-2.5">
+              {socialIcons.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-label={item.name}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="grid size-9 place-items-center rounded-full border border-white/10 bg-white/5 transition duration-300 hover:border-[#d8bd65] hover:bg-[#d8bd65]"
+                >
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={24}
+                    height={24}
+                    className="size-6 object-contain"
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-[1.4fr_0.8fr]">
-            <div>
-              <h2 className="font-display text-xl font-bold">Our Services</h2>
-              <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm font-semibold text-white/78 sm:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.7fr_1.25fr_0.95fr]">
+            <FooterColumn title="Company">
+              <div className="grid gap-3">
+                {quickLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="text-sm font-semibold text-white/58 transition duration-300 hover:text-[#d8bd65]"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </FooterColumn>
+
+            <FooterColumn title="Divisions">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {companyDivisions.map((service) => (
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}`}
-                    className="transition duration-300 hover:text-[#d8bd65]"
+                    className="group flex items-center justify-between gap-3 text-sm font-semibold text-white/58 transition duration-300 hover:text-[#d8bd65]"
                   >
-                    {service.name}
+                    <span>{service.name}</span>
+                    <ArrowUpRight className="size-3.5 opacity-0 transition duration-300 group-hover:opacity-100" />
                   </Link>
                 ))}
               </div>
-            </div>
+            </FooterColumn>
 
-            <div>
-              <h2 className="font-display text-xl font-bold">Office</h2>
-              <div className="mt-6 flex flex-col gap-5 text-sm font-semibold text-white/78">
+            <FooterColumn title="Office">
+              <div className="flex flex-col gap-4 text-sm font-semibold text-white/58">
                 <FooterContact icon="/assets/home/location.svg">
                   {contactInfo.address.map((line) => (
                     <span key={line}>{line}</span>
@@ -467,24 +499,33 @@ function Footer() {
                   <span>{contactInfo.email}</span>
                 </FooterContact>
               </div>
-            </div>
+            </FooterColumn>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/15 pt-6">
-          <div className="flex items-center justify-center gap-2.5 text-sm font-medium text-white/68">
-            <Image
-              src="/assets/home/copyright.svg"
-              alt=""
-              width={12}
-              height={12}
-              className="size-3"
-            />
-            <span>All Rights Reserved. 2026</span>
-          </div>
+        <div className="flex flex-col gap-3 pt-5 text-xs font-semibold tracking-wide text-white/38 sm:flex-row sm:items-center sm:justify-between">
+          <span>Copyright 2026 Sathriyan Group. All rights reserved.</span>
+          <span>Strength in Unity. Growth in Diversity.</span>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <h2 className="text-xs font-bold tracking-[0.18em] text-[#d8bd65] uppercase">
+        {title}
+      </h2>
+      <div className="mt-4">{children}</div>
+    </div>
   );
 }
 
@@ -496,8 +537,14 @@ function FooterContact({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center gap-3">
-      <Image src={icon} alt="" width={18} height={20} className="shrink-0" />
+    <div className="flex items-start gap-2.5">
+      <Image
+        src={icon}
+        alt=""
+        width={18}
+        height={20}
+        className="mt-0.5 size-4 shrink-0 opacity-64"
+      />
       <p className="flex flex-col leading-normal">{children}</p>
     </div>
   );
