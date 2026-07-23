@@ -1,4 +1,4 @@
-import type { CompanyDivision, ContactInfo } from "@/types/company";
+import type { CompanyDivision } from "@/types/company";
 
 export const companyProfile = {
   name: "Sathriyan Group",
@@ -135,7 +135,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Sathriyan Foods",
     slug: "sathriyan-foods",
-    tagline: "Serving Quality, Taste, and Trust",
+    tagline: "Food and Hospitality",
     sector: "Food and Hospitality",
     summary:
       "Food and hospitality venture focused on restaurants, catering, packaged foods, and delivery services.",
@@ -146,20 +146,14 @@ export const companyDivisions: CompanyDivision[] = [
       "Food delivery",
       "Hospitality services",
     ],
-    audiences: ["Families", "Events", "Corporate clients", "Retail customers"],
+    audiences: [
+      "Restaurant customers",
+      "Catering clients",
+      "Food delivery customers",
+    ],
     image: "/assets/home/food.jpg",
   },
 ];
-
-export const contactInfo: ContactInfo = {
-  address: ["12, Bheema Nagar", "Trichy, 620008"],
-  phone: "+91 12345 67890",
-  email: "abc@gmail.com",
-  socials: {
-    instagram: "https://www.instagram.com/",
-    whatsapp: "https://wa.me/911234567890",
-  },
-};
 
 export const getDivisionBySlug = (slug: string) =>
   companyDivisions.find((division) => division.slug === slug);

@@ -8,13 +8,3 @@ export type CompanyDivision = {
   audiences: string[];
   image: string;
 };
-
-export type ContactInfo = {
-  address: string[];
-  phone: string;
-  email: string;
-  socials: {
-    instagram: string;
-    whatsapp: string;
-  };
-};

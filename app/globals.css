@@ -1,15 +1,25 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Manrope", Arial, Helvetica, sans-serif;
-  --font-display: "Alexandria", Arial, Helvetica, sans-serif;
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-ink-soft: var(--brand-ink-soft);
+  --color-brand-ink-muted: var(--brand-ink-muted);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-gold-deep: var(--brand-gold-deep);
+  --color-brand-gold-bright: var(--brand-gold-bright);
+  --color-brand-text: var(--brand-text);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-muted-light: var(--brand-muted-light);
+  --radius-brand: var(--radius-brand);
+  --ease-brand: var(--ease-brand);
+  --shadow-brand: var(--shadow-brand);
+  --shadow-brand-soft: var(--shadow-brand-soft);
+  --font-sans: var(--font-manrope), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-alexandria), Arial, Helvetica, sans-serif;
   --font-serif: "Times New Roman", Times, serif;
   --font-mono: "Courier New", Courier, monospace;
 }
@@ -17,5 +27,16 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Manrope", Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

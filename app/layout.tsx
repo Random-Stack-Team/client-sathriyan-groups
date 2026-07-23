@@ -1,11 +1,52 @@
 import type { Metadata } from "next";
-import "@fontsource/alexandria/300.css";
-import "@fontsource/alexandria/700.css";
-import "@fontsource/manrope/400.css";
-import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/600.css";
-import "@fontsource/manrope/700.css";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const manrope = localFont({
+  src: [
+    {
+      path: "../node_modules/@fontsource/manrope/files/manrope-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/@fontsource/manrope/files/manrope-latin-500-normal.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/@fontsource/manrope/files/manrope-latin-600-normal.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/@fontsource/manrope/files/manrope-latin-700-normal.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-manrope",
+  display: "block",
+  preload: true,
+});
+
+const alexandria = localFont({
+  src: [
+    {
+      path: "../node_modules/@fontsource/alexandria/files/alexandria-latin-300-normal.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../node_modules/@fontsource/alexandria/files/alexandria-latin-700-normal.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-alexandria",
+  display: "block",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Sathriyan Group",
@@ -18,7 +59,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html
+      lang="en"
+      className={`${manrope.variable} ${alexandria.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );

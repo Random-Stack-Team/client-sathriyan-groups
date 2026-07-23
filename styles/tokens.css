@@ -1,0 +1,18 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --brand-ink: #111827;
+  --brand-ink-soft: #0b1c30;
+  --brand-ink-muted: #0f1d2c;
+  --brand-surface: #f5f5f7;
+  --brand-gold: #d8bd65;
+  --brand-gold-deep: #8a6f22;
+  --brand-gold-bright: #f1d778;
+  --brand-text: #4b5563;
+  --brand-muted: #667085;
+  --brand-muted-light: #98a2b3;
+  --radius-brand: 8px;
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-brand: 0 24px 70px rgba(17, 24, 39, 0.14);
+  --shadow-brand-soft: 0 24px 70px rgba(17, 24, 39, 0.08);
+}
