@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: "Manrope", Arial, Helvetica, sans-serif;
   --font-display: "Alexandria", Arial, Helvetica, sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
   --font-mono: "Courier New", Courier, monospace;
 }
 
