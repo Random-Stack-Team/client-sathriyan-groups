@@ -4,12 +4,17 @@ export function ContactMap() {
   return (
     <div className="relative h-[380px] overflow-hidden rounded-[28px] bg-[#e9e6df]">
       {/* Map-style background */}
-      <iframe
-  src="https://www.google.com/maps?q=12%2C%20Bheema%20Nagar%2C%20Trichy%2C%20620008&output=embed"
-  className="h-full w-full border-0"
-  loading="lazy"
-  title="Sathriyan Group Headquarters"
-/>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-40"
+        style={{
+          backgroundImage: `
+            linear-gradient(115deg, transparent 48%, rgba(11,28,48,0.08) 49%, transparent 50%),
+            linear-gradient(25deg, transparent 48%, rgba(11,28,48,0.06) 49%, transparent 50%)
+          `,
+          backgroundSize: "180px 180px, 240px 240px",
+        }}
+      />
 
       {/* Decorative map lines */}
       <div
