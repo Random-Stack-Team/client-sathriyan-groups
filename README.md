@@ -57,5 +57,9 @@ public/       Static assets
 - Add Client Components only where browser interactivity is required.
 - Do not hardcode business content into components.
 - Use the `@/*` path alias for project imports.
+- Use only the finalized project fonts:
+  - `font-sans` / Manrope for body text, navigation, labels, cards, and general UI.
+  - `font-display` / Alexandria for hero titles and major section headings.
+  - `font-serif` / Times New Roman for footer headings and serif accent text only.
 - Payload CMS is not implemented yet; only dependencies and placeholder folders are prepared.
 - Copy `.env.example` to `.env.local` when database, CMS, or email work begins.
