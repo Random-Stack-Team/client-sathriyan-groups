@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type NavItem = {
   label: string;
@@ -13,10 +13,49 @@ export type NavItem = {
 
 export function Header({ navItems }: { navItems: NavItem[] }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
   const pathname = usePathname();
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDifference = currentScrollY - lastScrollY;
+
+      // Always show at the top
+      if (currentScrollY <= 20) {
+        setIsVisible(true);
+      }
+
+      // Scrolling down
+      else if (scrollDifference > 5) {
+        setIsVisible(false);
+        setIsOpen(false);
+      }
+
+      // Scrolling up
+      else if (scrollDifference < -5) {
+        setIsVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="absolute inset-x-0 top-0 z-20">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-transform duration-500 ease-out ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="relative mx-auto flex h-28 max-w-[1240px] items-center justify-between px-6 lg:h-[124px] lg:px-0">
         <Link
           href="/"
@@ -42,10 +81,10 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative rounded-full px-5 py-3 text-sm leading-5 font-bold text-white/80 transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
+                className={`relative rounded-full px-5 py-3 text-sm leading-5 font-bold text-white/80 transition duration-300 ${
                   pathname === item.href
                     ? "bg-white/18 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-white/24"
-                    : "hover:text-brand-gold hover:bg-white/10"
+                    : "hover:bg-white/10 hover:text-brand-gold"
                 }`}
               >
                 {item.label}
@@ -64,7 +103,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
 
-        {isOpen ? (
+        {isOpen && (
           <nav
             aria-label="Mobile navigation"
             className="bg-brand-ink-soft/96 absolute inset-x-6 top-[98px] rounded-[14px] border border-white/16 p-3 shadow-[0_22px_64px_rgba(16,32,48,0.38)] backdrop-blur-2xl lg:hidden"
@@ -76,15 +115,15 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 onClick={() => setIsOpen(false)}
                 className={`block rounded-[10px] px-4 py-3 text-sm font-bold transition duration-300 ${
                   pathname === item.href
-                    ? "text-brand-ink bg-white"
-                    : "hover:text-brand-gold text-white hover:bg-white/10"
+                    ? "bg-white text-brand-ink"
+                    : "text-white hover:bg-white/10 hover:text-brand-gold"
                 }`}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-        ) : null}
+        )}
       </div>
     </header>
   );

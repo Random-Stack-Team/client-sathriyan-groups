@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 
-export function ContactForm() {
+export function ContactForm2() {
   return (
     <section className="px-6 pb-24 md:px-0 md:pb-32">
       <div className="mx-auto max-w-[1100px]">
