@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -54,6 +54,11 @@ const alexandria = localFont({
 export const metadata: Metadata = {
   title: "Sathriyan Group",
   description: "Corporate website foundation for Sathriyan Group of Companies.",
+};
+
+export const viewport: Viewport = {
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
