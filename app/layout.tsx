@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { SmoothScroll } from "@/components/smooth-scroll";
+import { SmoothScroll } from "@/components/site/smooth-scroll";
 import { Header } from "@/components/site/header";
 import { navItems } from "@/lib";
 

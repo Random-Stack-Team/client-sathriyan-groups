@@ -2,10 +2,10 @@ import { notFound } from "next/navigation";
 
 import { companyDivisions } from "@/lib";
 
-import SathriyanBuildersPage from "./SathriyanBuildersPage";
-import LandmarkRealtyPage from "./LandmarkRealtyPage";
-import NexgenEventsPage from "./NexgenEventsPage";
-import { ProjectDivisionPage } from "./ProjectDivisionPage";
+import SathriyanBuildersPage from "./_components/SathriyanBuildersPage";
+import LandmarkRealtyPage from "./_components/LandmarkRealtyPage";
+import NexgenEventsPage from "./_components/NexgenEventsPage";
+import { ProjectDivisionPage } from "./_components/ProjectDivisionPage";
 
 const availableSlugs = companyDivisions.map((division) => division.slug);
 
