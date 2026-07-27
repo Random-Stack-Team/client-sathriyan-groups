@@ -1,12 +1,10 @@
 "use client";
 
-import { ArrowLeft, ArrowUpRight, Plus, X, Building2, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import { Header } from "@/components/site/header";
-import { navItems } from "@/lib";
 import type { CompanyDivision } from "@/lib";
 import { Reveal } from "@/components/motion/reveal";
 
@@ -26,6 +24,38 @@ type ProjectDivisionPageProps = {
   projectHeading: string;
   ctaText: string;
 };
+
+function StatusPill({
+  status,
+  isActive,
+  variant = "card",
+}: {
+  status: string;
+  isActive: boolean;
+  variant?: "card" | "modal";
+}) {
+  const base = "inline-flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold tracking-[0.15em] uppercase rounded-full border border-brand-ink/10";
+  const variantClass =
+    variant === "modal"
+      ? "bg-brand-surface text-brand-ink"
+      : "bg-white/95 backdrop-blur-md text-brand-ink shadow-sm";
+
+  return (
+    <span className={`${base} ${variantClass}`}>
+      <span className="relative flex h-2 w-2">
+        {isActive ? (
+          <>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-gold opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-gold" />
+          </>
+        ) : (
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        )}
+      </span>
+      {status}
+    </span>
+  );
+}
 
 export function ProjectDivisionPage({
   division,
@@ -88,14 +118,13 @@ export function ProjectDivisionPage({
 
   return (
     <main className="min-h-screen bg-brand-surface text-brand-ink">
-      <Header navItems={navItems} />
 
       {/* Reduced Hero Section */}
       <section className="bg-brand-ink px-6 pt-32 pb-16 text-white md:px-12 md:pt-40 md:pb-20 lg:px-20 relative overflow-hidden">
         {/* Abstract background element */}
         <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="mx-auto max-w-7xl relative z-10 py-4 md:py-8">
+        <div className="mx-auto max-w-[var(--container-max)] relative z-10 py-4 md:py-8">
           <Reveal>
             <Link
               href="/services"
@@ -124,7 +153,7 @@ export function ProjectDivisionPage({
               </Reveal>
               <Reveal delay={0.3}>
                 <p className="font-display mt-6 max-w-xl text-xl text-brand-gold/90 italic md:text-2xl border-l-2 border-brand-gold pl-5">
-                  "{division.tagline}"
+                  &ldquo;{division.tagline}&rdquo;
                 </p>
               </Reveal>
             </div>
@@ -139,7 +168,7 @@ export function ProjectDivisionPage({
 
       {/* Hero Image */}
       <section className="bg-brand-ink px-6 pb-16 md:px-12 md:pb-20 lg:px-20">
-        <div className="relative mx-auto aspect-[16/7] max-w-7xl overflow-hidden rounded-sm bg-brand-ink shadow-2xl">
+        <div className="relative mx-auto aspect-[16/7] max-w-[var(--container-max)] overflow-hidden rounded-sm bg-brand-ink shadow-2xl">
           <Reveal delay={0.5}>
             <Image
               src={division.image}
@@ -153,73 +182,79 @@ export function ProjectDivisionPage({
         </div>
       </section>
 
-      {/* Redesigned Premium "What we offer" (Services) */}
-      <section className="bg-brand-ink px-6 py-24 md:px-12 md:py-32 lg:px-20 text-white">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="mb-16 border-b border-white/10 pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
-              <div>
-                <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase mb-4">
-                  Our Expertise
-                </p>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-bold">
-                  What we offer.
+      {/* Showstopper Expertise & Audiences Section */}
+      <section className="bg-brand-ink text-white relative px-6 py-16 md:px-12 md:py-24 lg:px-20 overflow-hidden">
+        {/* Abstract dark gold gradient */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-[100px] pointer-events-none -translate-x-1/3 translate-y-1/3" />
+        
+        <div className="mx-auto max-w-[var(--container-max)] relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16">
+            
+            {/* Left: Sticky Titles & Audiences */}
+            <div className="lg:sticky lg:top-32 h-fit">
+              <Reveal>
+                <h2 className="font-display text-3xl leading-[1.1] font-bold md:text-4xl lg:text-5xl text-white mb-4">
+                  Driving <span className="text-brand-gold italic">Excellence</span> Across Sectors.
                 </h2>
-              </div>
-              <p className="max-w-md text-white/60 text-lg leading-relaxed md:text-right">
-                Specialized solutions crafted with precision. We focus on delivering exceptional quality across every touchpoint of our service verticals.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="flex flex-col">
-            {division.services.map((service, index) => (
-              <Reveal key={service} delay={index * 0.1}>
-                <div className="group border-b border-white/10 py-8 md:py-12 flex items-center justify-between transition-colors hover:border-brand-gold cursor-default overflow-hidden">
-                  <div className="flex items-center gap-6 md:gap-16">
-                    <span className="font-display text-2xl md:text-4xl font-bold text-white/20 group-hover:text-brand-gold transition-colors duration-500">
-                      0{index + 1}
-                    </span>
-                    <h3 className="font-display text-2xl md:text-5xl font-bold group-hover:translate-x-4 transition-transform duration-500">
-                      {service}
-                    </h3>
+                <p className="text-white/60 text-base leading-relaxed mb-10 max-w-md">
+                  We blend deep industry knowledge with uncompromising standards to deliver transformational results for our partners.
+                </p>
+                
+                <div className="mb-8">
+                  <p className="text-xs tracking-[0.2em] font-bold text-brand-gold uppercase mb-6 flex items-center gap-4">
+                    <span className="w-8 h-px bg-brand-gold"></span>
+                    Who we serve
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    {division.audiences.map((audience, index) => (
+                      <Reveal key={audience} delay={index * 0.1}>
+                        <span className="inline-block px-5 py-2.5 rounded-full border border-white/10 text-sm text-white/80 hover:text-brand-gold hover:border-brand-gold/50 transition-colors backdrop-blur-sm bg-white/5 cursor-default">
+                          {audience}
+                        </span>
+                      </Reveal>
+                    ))}
                   </div>
-                  <ArrowUpRight className="text-white/0 group-hover:text-brand-gold transition-all duration-500 size-8 md:size-12 -translate-x-8 group-hover:translate-x-0 hidden md:block" />
                 </div>
               </Reveal>
-            ))}
+            </div>
+
+            {/* Right: Expertise Massive List */}
+            <div className="flex flex-col mt-4 lg:mt-0 pt-4 lg:pt-0 lg:border-l lg:border-white/10 lg:pl-16">
+              <Reveal>
+                <p className="text-xs tracking-[0.2em] font-bold text-brand-gold uppercase mb-6 flex items-center gap-4">
+                  <span className="w-8 h-px bg-brand-gold"></span>
+                  Our Capabilities
+                </p>
+              </Reveal>
+              <div className="flex flex-col">
+                {division.services.map((service, index) => (
+                  <Reveal key={service} delay={index * 0.1}>
+                    <div className="group flex items-center justify-between py-4 md:py-6 border-b border-white/10 hover:border-brand-gold transition-colors duration-500 cursor-default">
+                      <div className="flex items-start md:items-center gap-4 md:gap-8 flex-col md:flex-row">
+                        <span className="font-display text-sm md:text-lg font-bold text-brand-gold/40 group-hover:text-brand-gold transition-colors tracking-widest">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-white group-hover:text-brand-gold transition-all duration-500 transform group-hover:translate-x-4">
+                          {service}
+                        </h3>
+                      </div>
+                      <div className="hidden md:flex w-10 h-10 rounded-full border border-white/20 items-center justify-center group-hover:bg-brand-gold group-hover:border-brand-gold transition-all duration-500 transform -rotate-45 group-hover:rotate-0">
+                         <ArrowUpRight className="size-4 text-white/50 group-hover:text-brand-ink transition-colors" />
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
 
-      {/* Redesigned Premium "Who we work with" (Audiences) */}
-      <section className="bg-brand-gold px-6 py-24 md:px-12 md:py-32 lg:px-20 text-brand-ink">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <p className="text-brand-ink/60 text-xs font-bold tracking-[0.25em] uppercase mb-12 text-center">
-              Who we work with
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-4 md:gap-x-12 md:gap-y-6">
-              {division.audiences.map((audience, index) => (
-                <div key={audience} className="flex items-center gap-4 md:gap-12">
-                  <span className="font-display text-3xl md:text-5xl lg:text-7xl font-bold hover:text-white transition-colors duration-300 cursor-default">
-                    {audience}
-                  </span>
-                  {index < division.audiences.length - 1 && (
-                    <span className="text-brand-ink/20 text-3xl md:text-5xl lg:text-7xl font-light">/</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Projects Grid Section (Min 6 Projects with Animated Pills) */}
-      <section className="bg-white px-6 py-24 md:px-12 md:py-32 lg:px-20">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-white px-6 pt-24 pb-24 md:px-12 md:pt-32 md:pb-32 lg:px-20">
+        <div className="mx-auto max-w-[var(--container-max)]">
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
               <div>
@@ -271,7 +306,7 @@ export function ProjectDivisionPage({
       {/* CTA Section */}
       <section className="bg-brand-ink px-6 py-24 text-white md:px-12 md:py-32 lg:px-20 relative overflow-hidden">
         <div className="absolute bottom-0 right-0 translate-y-1/3 translate-x-1/3 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="mx-auto max-w-7xl text-center relative z-10">
+        <div className="mx-auto max-w-[var(--container-max)] text-center relative z-10">
           <Reveal>
             <p className="text-xs tracking-[0.25em] font-bold text-brand-gold uppercase">
               Start a conversation
@@ -339,19 +374,11 @@ export function ProjectDivisionPage({
                 </h2>
 
                 <div className="flex items-center gap-3 mb-12 border-b border-brand-ink/10 pb-8">
-                  <span className="inline-flex items-center gap-2 bg-brand-surface px-4 py-2 text-xs font-bold tracking-[0.15em] uppercase text-brand-ink rounded-full border border-brand-ink/10">
-                    <span className="relative flex h-2 w-2">
-                      {isActiveStatus(selectedProject.status) ? (
-                        <>
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
-                        </>
-                      ) : (
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                      )}
-                    </span>
-                    {selectedProject.status}
-                  </span>
+                  <StatusPill
+                    status={selectedProject.status}
+                    isActive={isActiveStatus(selectedProject.status)}
+                    variant="modal"
+                  />
                 </div>
 
                 <div className="space-y-6">
@@ -420,19 +447,10 @@ function ProjectCard({
         
         {/* Highly Visible Animated Status Pill */}
         <div className="absolute top-4 right-4 z-10">
-          <span className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-md px-3 py-1.5 text-[10px] font-bold tracking-[0.15em] uppercase text-brand-ink shadow-sm rounded-full border border-brand-ink/10">
-            <span className="relative flex h-2 w-2">
-              {isActiveStatus(project.status) ? (
-                <>
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
-                </>
-              ) : (
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              )}
-            </span>
-            {project.status}
-          </span>
+          <StatusPill
+            status={project.status}
+            isActive={isActiveStatus(project.status)}
+          />
         </div>
       </div>
       

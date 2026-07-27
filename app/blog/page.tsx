@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
-import { Header } from "@/components/site/header";
-import { blogPosts, navItems } from "@/lib";
+import { blogPosts } from "@/lib";
 
 export const metadata: Metadata = {
   title: "Journal | Sathriyan Group",
@@ -19,14 +18,12 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen bg-brand-surface text-brand-ink selection:bg-brand-gold/30">
-      <Header navItems={navItems} />
-
       {/* Featured Post Hero */}
       <section className="bg-brand-ink px-6 pt-40 pb-20 text-white md:px-12 md:pt-48 md:pb-28 lg:px-20 relative overflow-hidden">
         {/* Abstract background element */}
         <div className="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-[800px] h-[800px] bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mx-auto max-w-7xl relative z-10">
+        <div className="mx-auto max-w-[var(--container-max)] relative z-10">
           <Reveal className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-8 gap-6">
             <div>
               <p className="text-brand-gold text-xs font-bold tracking-[0.25em] uppercase">
@@ -86,19 +83,11 @@ export default function BlogPage() {
 
       {/* Grid Section */}
       <section className="bg-brand-surface px-6 py-24 md:px-12 md:py-32 lg:px-20 relative z-10 -mt-8">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[var(--container-max)]">
           <Reveal className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-brand-ink/10 pb-6">
             <h3 className="font-display text-[28px] md:text-[36px] font-bold">
               Latest Notes
             </h3>
-            <div className="flex gap-4">
-              {/* Static filters just for premium look */}
-              {["All", "Construction", "Real Estate", "Events"].map((filter, i) => (
-                <button key={filter} className={`text-xs font-bold tracking-[0.1em] uppercase transition-colors hover:text-brand-ink ${i === 0 ? "text-brand-ink border-b-2 border-brand-ink pb-1" : "text-brand-muted pb-1 border-b-2 border-transparent"}`}>
-                  {filter}
-                </button>
-              ))}
-            </div>
           </Reveal>
 
           {/* Standard Grid */}

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { Header } from "@/components/site/header";
+import { navItems } from "@/lib";
 
 const manrope = localFont({
   src: [
@@ -66,7 +68,10 @@ export default function RootLayout({
       className={`${manrope.variable} ${alexandria.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <Header navItems={navItems} />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

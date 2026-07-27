@@ -12,6 +12,7 @@
   --brand-muted: #667085;
   --brand-muted-light: #98a2b3;
   --brand-footer: #0a0f1a;
+  --container-max: 1240px;
   --radius-brand: 8px;
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
   --shadow-brand: 0 24px 70px rgba(17, 24, 39, 0.14);

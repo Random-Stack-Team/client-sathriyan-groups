@@ -4,8 +4,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Footer } from "@/components/site/footer";
-import { Header } from "@/components/site/header";
-import { companyDivisions, companyProfile, navItems } from "@/lib";
+import { companyDivisions, companyProfile } from "@/lib";
 
 const socialItems = [
   {
@@ -25,8 +24,7 @@ export function LandingPage() {
   return (
     <main className="bg-brand-surface text-brand-ink min-h-screen">
       <FloatingSocialLinks />
-      <HeroSection />
-      <OverviewSection />
+      <HeroSection />      <OverviewSection />
       <AboutIntroSection />
       <UpcomingSection />
       <Footer />
@@ -47,9 +45,8 @@ function HeroSection() {
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,20,32,0.9)_0%,rgba(10,20,32,0.7)_46%,rgba(10,20,32,0.18)_100%)]" />
       <div className="from-brand-ink-muted/80 absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t to-transparent" />
-      <Header navItems={navItems} />
 
-      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] w-full max-w-[1240px] items-end px-6 pt-32 pb-10 md:min-h-[var(--hero-min-height)] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pb-16">
+      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] w-full max-w-[var(--container-max)] items-end px-6 pt-32 pb-10 md:min-h-[var(--hero-min-height)] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pb-16">
         <Reveal className="max-w-[760px] text-white" y={36}>
             <p className="text-brand-gold mb-6 text-xs font-bold tracking-[0.24em] uppercase">
               Sathriyan Group
@@ -140,7 +137,7 @@ function FloatingSocialLinks() {
         <div
           key={item.name}
           aria-label={item.name}
-          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 grid size-11 place-items-center rounded-full border border-white/24 bg-[rgba(11,28,48,0.7)] text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] transition duration-300 hover:-translate-x-1"
+          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 grid size-11 place-items-center rounded-full border border-white/24 bg-brand-ink-soft/70 text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] transition duration-300 hover:-translate-x-1"
         >
           <Image
             src={item.icon}
@@ -158,7 +155,7 @@ function FloatingSocialLinks() {
 function OverviewSection() {
   return (
     <section className="bg-white px-6 py-20 md:px-0 md:py-28">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="grid gap-12 border-b border-black/8 pb-16 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.22em] uppercase">
@@ -281,7 +278,7 @@ function OverviewSection() {
 function AboutIntroSection() {
   return (
     <section className="bg-brand-surface px-6 py-18 md:px-0 md:py-28">
-      <div className="mx-auto max-w-[1242px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="grid gap-8 md:grid-cols-[0.78fr_1fr] md:items-end">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">
@@ -391,7 +388,7 @@ function AboutIntroSection() {
 function UpcomingSection() {
   return (
     <section className="bg-white px-6 py-16 md:px-0 md:py-24">
-      <div className="mx-auto max-w-[1242px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">
@@ -494,7 +491,7 @@ function ShowcaseCard({
             {title}
           </h3>
 
-            <div className="rounded-brand bg-[rgba(11,28,48,0.88)] ease-brand md:group-hover:bg-[rgba(11,28,48,0.88)] mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)]">
+            <div className="rounded-brand bg-brand-ink-soft/88 ease-brand md:group-hover:bg-brand-ink-soft/88 mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)]">
             <p className="ease-brand max-w-[520px] text-sm leading-6 text-white/82 transition duration-[1100ms] md:translate-y-1.5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
               {description}
             </p>

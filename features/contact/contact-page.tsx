@@ -3,8 +3,7 @@ import Image from "next/image";
 
 import { CustomSelect } from "@/components/form/custom-select";
 import { Reveal } from "@/components/motion/reveal";
-import { Header } from "@/components/site/header";
-import { companyDivisions, navItems } from "@/lib";
+import { companyDivisions } from "@/lib";
 
 const inquiryTypes = [
   "General enquiry",
@@ -54,9 +53,8 @@ export function ContactPage() {
           className="object-cover opacity-42"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,48,0.96)_0%,rgba(11,28,48,0.84)_52%,rgba(11,28,48,0.42)_100%)]" />
-        <Header navItems={navItems} />
 
-        <div className="relative z-10 mx-auto grid max-w-[1240px] items-center px-6 pt-32 pb-16 md:px-0 md:pt-40 md:pb-20">
+        <div className="relative z-10 mx-auto grid max-w-[var(--container-max)] items-center px-6 pt-32 pb-16 md:px-0 md:pt-40 md:pb-20">
           <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center" y={36}>
             <div>
               <p className="text-brand-gold text-xs font-bold tracking-[0.24em] uppercase">
@@ -75,7 +73,7 @@ export function ContactPage() {
       </section>
 
       <section className="px-6 pt-14 md:px-0 md:pt-20">
-        <div className="mx-auto max-w-[1240px]">
+        <div className="mx-auto max-w-[var(--container-max)]">
           <Reveal>
             <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
@@ -136,7 +134,7 @@ export function ContactPage() {
       </section>
 
       <section className="px-6 py-18 md:px-0 md:py-28">
-        <div className="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+        <div className="mx-auto grid max-w-[var(--container-max)] gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <Reveal>
             <div className="lg:sticky lg:top-28">
               <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">

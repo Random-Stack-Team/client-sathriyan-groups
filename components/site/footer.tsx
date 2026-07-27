@@ -10,7 +10,7 @@ import { companyDivisions, navItems } from "@/lib";
 export function Footer() {
   return (
     <footer className="bg-brand-footer px-6 text-white md:px-0">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="pt-16 pb-8" y={20}>
           <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_0.8fr]">
             <div className="max-w-[320px]">

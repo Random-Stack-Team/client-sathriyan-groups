@@ -15,14 +15,13 @@
   --color-brand-muted: var(--brand-muted);
   --color-brand-muted-light: var(--brand-muted-light);
   --color-brand-footer: var(--brand-footer);
+  --container-max: var(--container-max);
   --radius-brand: var(--radius-brand);
   --ease-brand: var(--ease-brand);
   --shadow-brand: var(--shadow-brand);
   --shadow-brand-soft: var(--shadow-brand-soft);
   --font-sans: var(--font-manrope), Arial, Helvetica, sans-serif;
   --font-display: var(--font-alexandria), Arial, Helvetica, sans-serif;
-  --font-serif: "Times New Roman", Times, serif;
-  --font-mono: "Courier New", Courier, monospace;
 }
 
 html {

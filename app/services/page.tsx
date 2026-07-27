@@ -3,16 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
-import { Header } from "@/components/site/header";
-import { companyDivisions, companyProfile, navItems } from "@/lib";
+import { companyDivisions, companyProfile } from "@/lib";
 
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-brand-surface text-brand-ink">
-      <Header navItems={navItems} />
 
       <section className="bg-brand-ink-soft px-6 pt-32 pb-16 text-white md:px-12 md:pt-40 md:pb-20 lg:px-20">
-        <div className="mx-auto max-w-7xl border-y border-white/12 py-8 md:py-10">
+        <div className="mx-auto max-w-[var(--container-max)] border-y border-white/12 py-8 md:py-10">
           <div className="grid gap-12 lg:grid-cols-[1fr_0.42fr] lg:items-end">
             <div>
               <Reveal>
@@ -45,7 +43,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="px-6 py-24 md:px-12 md:py-32 lg:px-20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[var(--container-max)]">
           <div className="mb-12 flex items-end justify-between border-b border-brand-ink/15 pb-5">
             <div>
               <p className="text-xs tracking-[0.25em] text-brand-gold uppercase">
@@ -124,7 +122,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="border-t border-brand-ink/15 bg-white px-6 py-24 md:px-12 md:py-32 lg:px-20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[var(--container-max)]">
           <Reveal>
             <p className="text-xs tracking-[0.25em] text-brand-gold uppercase">
               Start a conversation

@@ -6,8 +6,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import { Reveal } from "@/components/motion/reveal";
-import { Header } from "@/components/site/header";
-import { navItems } from "@/lib";
 
 const timelineItems = [
   {
@@ -75,7 +73,6 @@ const guidingPrinciples = [
 export function AboutPage() {
   return (
     <main className="bg-brand-surface text-brand-ink min-h-screen">
-      <Header navItems={navItems} />
       <AboutHero />
       <CompanyStory />
       <MetricsSection />
@@ -104,7 +101,7 @@ function AboutHero() {
         className="object-cover opacity-48"
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,48,0.96)_0%,rgba(11,28,48,0.78)_56%,rgba(11,28,48,0.34)_100%)]" />
-      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] max-w-[1240px] items-center px-6 pt-28 pb-8 md:min-h-[var(--hero-min-height)] md:px-0 md:pt-32 md:pb-10">
+      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] max-w-[var(--container-max)] items-center px-6 pt-28 pb-8 md:min-h-[var(--hero-min-height)] md:px-0 md:pt-32 md:pb-10">
         <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center" y={36}>
           <div>
             <p className="text-brand-gold text-xs font-bold tracking-[0.24em] uppercase">
@@ -138,7 +135,7 @@ function AboutHero() {
 function CompanyStory() {
   return (
     <section className="bg-white px-6 py-20 md:px-0 md:py-28">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div className="relative min-h-[560px] overflow-hidden rounded-brand bg-brand-ink">
             <Image
@@ -191,7 +188,7 @@ function CompanyStory() {
 function MetricsSection() {
   return (
     <section className="bg-white px-6 pb-20 md:px-0 md:pb-28">
-      <Reveal className="mx-auto max-w-[1240px]">
+      <Reveal className="mx-auto max-w-[var(--container-max)]">
         <div className="grid overflow-hidden border-y border-black/8 bg-white lg:grid-cols-[0.82fr_1.18fr]">
           <div className="relative overflow-hidden bg-brand-ink-soft p-7 text-white md:p-10">
             <div className="absolute right-0 bottom-0 h-px w-2/3 bg-brand-gold/30" />
@@ -296,7 +293,7 @@ function AnimatedMetric({
 function MissionVision() {
   return (
     <section className="bg-white px-6 py-24 md:px-0 md:py-32">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="mb-12 grid gap-8 lg:grid-cols-[0.7fr_0.3fr] lg:items-end">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.24em] uppercase">
@@ -381,7 +378,7 @@ function MissionVision() {
 function WhySection() {
   return (
     <section className="bg-brand-surface px-6 py-20 md:px-0 md:py-28">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="grid gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-start">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.22em] uppercase">
@@ -442,7 +439,7 @@ function WhySection() {
 function TimelineSection() {
   return (
     <section className="bg-white px-6 py-20 md:px-0 md:py-28">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="mb-12 max-w-[760px]">
           <p className="text-brand-gold-deep text-xs font-bold tracking-[0.22em] uppercase">
             Timeline
@@ -504,7 +501,7 @@ function TimelineSection() {
 function FounderMessage() {
   return (
     <section className="bg-brand-ink-soft px-6 py-20 text-white md:px-0 md:py-28">
-      <div className="mx-auto grid max-w-[1240px] gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
+      <div className="mx-auto grid max-w-[var(--container-max)] gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
         <Reveal className="relative min-h-[520px] overflow-hidden rounded-brand bg-brand-ink">
           <Image
             src="/assets/home/advisor.jpg"
@@ -561,7 +558,7 @@ function FounderMessage() {
 function BlogIntroSection() {
   return (
     <section className="bg-brand-surface px-6 py-24 md:px-0 md:py-32">
-      <Reveal className="mx-auto grid max-w-[1240px] overflow-hidden rounded-brand bg-white shadow-brand-soft ring-1 ring-black/5 lg:grid-cols-[0.9fr_1.1fr]">
+      <Reveal className="mx-auto grid max-w-[var(--container-max)] overflow-hidden rounded-brand bg-white shadow-brand-soft ring-1 ring-black/5 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between p-8 md:p-10 lg:p-12">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.22em] uppercase">
@@ -619,7 +616,7 @@ function AboutCTA() {
         className="object-cover opacity-20"
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,20,32,0.95)_0%,rgba(10,20,32,0.82)_50%,rgba(10,20,32,0.6)_100%)]" />
-      <Reveal className="relative z-10 mx-auto max-w-[1240px]">
+      <Reveal className="relative z-10 mx-auto max-w-[var(--container-max)]">
         <div className="border-y border-white/12 py-10">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
             <div>

@@ -4,9 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Header } from "@/components/site/header";
 import { Reveal } from "@/components/motion/reveal";
-import { blogPosts, navItems } from "@/lib";
+import { blogPosts } from "@/lib";
+
+function ShareButtons() {
+  return (
+    <div className="flex gap-4">
+      <button className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-ink/10 text-brand-ink transition-colors duration-300 hover:border-brand-ink hover:bg-brand-ink hover:text-white">
+        <Share2 className="size-4" />
+      </button>
+      <button className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-ink/10 text-brand-ink transition-colors duration-300 hover:border-brand-ink hover:bg-brand-ink hover:text-white">
+        <Link2 className="size-4" />
+      </button>
+      <button className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-ink/10 text-brand-ink transition-colors duration-300 hover:border-brand-ink hover:bg-brand-ink hover:text-white">
+        <Mail className="size-4" />
+      </button>
+    </div>
+  );
+}
 
 type BlogDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -43,12 +58,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   return (
     <main className="min-h-screen bg-brand-surface text-brand-ink selection:bg-brand-gold/30">
-      <Header navItems={navItems} />
 
       <article>
         {/* Classic Editorial Hero (Typography Focus) */}
         <section className="px-6 pt-40 pb-20 md:px-12 md:pt-48 md:pb-28 lg:px-20 bg-white">
-          <div className="mx-auto max-w-5xl text-center flex flex-col items-center">
+          <div className="mx-auto max-w-[var(--container-max)] text-center flex flex-col items-center">
             <Reveal>
               <Link
                 href="/blog"
@@ -82,7 +96,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
         {/* Framed Featured Image */}
         <section className="px-6 pb-12 md:px-12 md:pb-20 lg:px-20 bg-white">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-[var(--container-max)]">
             <Reveal delay={0.3}>
               <div className="relative aspect-[16/9] lg:aspect-[21/9] w-full overflow-hidden bg-brand-ink-soft rounded-sm">
                 <Image
@@ -100,7 +114,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
         {/* Structured Content Layout */}
         <section className="bg-white px-6 py-12 md:px-12 md:py-20 lg:px-20">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-[var(--container-max)]">
             <div className="grid gap-16 lg:grid-cols-[200px_1fr] lg:gap-24">
               
               {/* Sticky Sidebar */}
@@ -117,17 +131,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <Reveal delay={0.1}>
                     <div>
                       <p className="text-[10px] font-bold tracking-[0.2em] text-brand-gold uppercase mb-5">Share</p>
-                      <div className="flex gap-4">
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Share2 className="size-4" />
-                        </button>
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Link2 className="size-4" />
-                        </button>
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Mail className="size-4" />
-                        </button>
-                      </div>
+                      <ShareButtons />
                     </div>
                   </Reveal>
                 </div>
@@ -157,7 +161,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   
                   <div className="my-14 py-8 border-y border-brand-ink/10">
                     <p className="font-display text-2xl md:text-3xl font-bold text-brand-ink text-center leading-snug">
-                      "The work should be useful, well communicated, and built to last beyond the first interaction."
+                      &ldquo;The work should be useful, well communicated, and built to last beyond the first interaction.&rdquo;
                     </p>
                   </div>
                   
@@ -179,17 +183,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     </div>
                     <div>
                       <p className="text-[10px] font-bold tracking-[0.2em] text-brand-gold uppercase mb-5">Share</p>
-                      <div className="flex gap-4">
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Share2 className="size-4" />
-                        </button>
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Link2 className="size-4" />
-                        </button>
-                        <button className="w-10 h-10 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-ink hover:border-brand-ink hover:bg-brand-ink hover:text-white transition-colors duration-300">
-                          <Mail className="size-4" />
-                        </button>
-                      </div>
+                      <ShareButtons />
                     </div>
                   </div>
                 </Reveal>
@@ -214,7 +208,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           {/* Abstract bg element */}
           <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
           
-          <div className="mx-auto max-w-7xl relative z-10">
+          <div className="mx-auto max-w-[var(--container-max)] relative z-10">
             <div className="mb-14 flex items-end justify-between gap-6 border-b border-brand-ink/10 pb-6">
               <div>
                 <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">
