@@ -14,20 +14,27 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  y = 28,
+  y = 16,
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.24, margin: "0px 0px -80px 0px" }}
+      initial={false}
+      whileInView={
+        reduceMotion
+          ? undefined
+          : {
+              opacity: [0, 1],
+              y: [y, 0],
+            }
+      }
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -40px 0px" }}
       transition={{
-        duration: 1.18,
+        duration: 0.7,
         delay,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.25, 1, 0.35, 1],
       }}
     >
       {children}

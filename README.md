@@ -1,22 +1,14 @@
 # Sathriyan Group Corporate Website
 
-Initial dependency and tooling setup for the Sathriyan Group corporate website.
-
-This repo is intentionally only a project foundation. No website pages, UI, business content, Payload collections, CMS admin setup, forms, integrations, or service/blog logic are implemented yet.
+A Next.js multi-page corporate website for Sathriyan Group — a diversified business conglomerate with divisions in construction, real estate, events, branding, trade, advisory, and hospitality.
 
 ## Tech Stack
 
-- Next.js 15 App Router
+- Next.js 16 (App Router)
 - TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Payload CMS 3 dependencies
-- PostgreSQL dependencies
+- Tailwind CSS v4
 - Framer Motion
 - Lucide React
-- React Hook Form
-- Zod
-- Resend
 
 ## Getting Started
 
@@ -37,29 +29,18 @@ npm run build
 ## Project Structure
 
 ```txt
-app/          Next.js App Router shell only
-components/   Shared UI components
-features/     Feature-specific modules
-payload/      Payload CMS preparation folders
-collections/  Future Payload collections
-globals/      Future Payload globals
-hooks/        Shared hooks and Payload hooks
-lib/          Shared utilities
-types/        Shared TypeScript types
-styles/       Shared style entry points
-public/       Static assets
+app/          Next.js App Router pages and layouts
+components/   Shared UI components (Header, Footer, form controls)
+features/     Feature-specific page modules (Home, About, Contact)
+lib/          Shared data, utilities, and barrel exports
+styles/       Global styles and design tokens
+public/       Static assets (images, fonts, icons)
 ```
 
 ## Notes For The Team
 
-- Create actual routes/pages during the UI implementation phase.
 - Keep Server Components as the default.
 - Add Client Components only where browser interactivity is required.
-- Do not hardcode business content into components.
+- Do not hardcode business content into components — use `lib/content/`.
 - Use the `@/*` path alias for project imports.
-- Use only the finalized project fonts:
-  - `font-sans` / Manrope for body text, navigation, labels, cards, and general UI.
-  - `font-display` / Alexandria for hero titles and major section headings.
-  - `font-serif` / Times New Roman for footer headings and serif accent text only.
-- Payload CMS is not implemented yet; only dependencies and placeholder folders are prepared.
-- Copy `.env.example` to `.env.local` when database, CMS, or email work begins.
+- Fonts: `font-sans` / Manrope for body, `font-display` / Alexandria for headings.

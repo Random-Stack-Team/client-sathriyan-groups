@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const manrope = localFont({
   src: [
@@ -26,7 +27,7 @@ const manrope = localFont({
     },
   ],
   variable: "--font-manrope",
-  display: "block",
+  display: "swap",
   preload: true,
 });
 
@@ -44,7 +45,7 @@ const alexandria = localFont({
     },
   ],
   variable: "--font-alexandria",
-  display: "block",
+  display: "swap",
   preload: true,
 });
 
@@ -61,9 +62,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${manrope.variable} ${alexandria.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

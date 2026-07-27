@@ -1,25 +1,34 @@
-import type { CompanyDivision } from "@/types/company";
+export type CompanyDivision = {
+  name: string;
+  slug: string;
+  tagline: string;
+  sector: string;
+  summary: string;
+  services: string[];
+  audiences: string[];
+  image: string;
+};
 
 export const companyProfile = {
   name: "Sathriyan Group",
-  tagline: "Strength in Unity. Growth in Diversity.",
+  tagline: "Strength in unity. Growth in diversity.",
   summary:
-    "Sathriyan Group is a diversified business group with ventures in construction, real estate, branding, events, consultancy, international trade, and food and hospitality.",
+    "Sathriyan Group runs independent businesses. Construction, real estate, events, branding, trade, advisory, and hospitality. Each one focused. All connected.",
   foundations: [
     {
-      title: "Integrity",
+      title: "Do it right",
       description:
-        "Building every relationship with honesty, transparency, and long-term responsibility.",
+        "No shortcuts. Every project, every client, every time. We would rather do less and do it well than do more and do it poorly.",
     },
     {
-      title: "Innovation",
+      title: "Think forward",
       description:
-        "Using modern ideas, systems, and technology to create better outcomes across industries.",
+        "The market moves. We move with it. New tools, new methods, better ways to get things done. That is how we stay relevant.",
     },
     {
-      title: "Customer Focus",
+      title: "People come first",
       description:
-        "Keeping client goals, audience needs, and practical value at the center of each division.",
+        "The client's problem is our problem. We listen, we understand, we deliver what actually matters, not what is easiest to sell.",
     },
   ],
 };
@@ -28,7 +37,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Sathriyan Builders",
     slug: "sathriyan-builders",
-    tagline: "Crafting Landmarks, Shaping Lifestyles",
+    tagline: "We build it. We stand behind it.",
     sector: "Construction and Real Estate",
     summary:
       "Construction and development services for residential, commercial, infrastructure, and urban planning projects.",
@@ -45,7 +54,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Landmark Realty",
     slug: "landmark-realty",
-    tagline: "Where Every Property Becomes a Landmark",
+    tagline: "Property decisions you won't regret.",
     sector: "Real Estate and Property Services",
     summary:
       "Property advisory, sales, leasing, investment guidance, and project marketing for real estate clients.",
@@ -62,7 +71,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Nexgen Events",
     slug: "nexgen-events",
-    tagline: "Seamless Events, Lasting Impressions",
+    tagline: "Events that people actually remember.",
     sector: "Event Management",
     summary:
       "End-to-end planning and execution for corporate events, exhibitions, launches, celebrations, and brand experiences.",
@@ -79,7 +88,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Boldmark Agency",
     slug: "boldmark-agency",
-    tagline: "Bold Ideas Marked Success",
+    tagline: "Brands that stand out. Not blend in.",
     sector: "Branding and Advertising",
     summary:
       "Creative branding, advertising, digital marketing, and communication services for growing businesses.",
@@ -101,7 +110,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "InterWorld Link",
     slug: "interworld-link",
-    tagline: "Connecting Borders, Creating Opportunities",
+    tagline: "Trade without boundaries.",
     sector: "International Trade and Business Solutions",
     summary:
       "Import-export, global sourcing, market access, and business support for companies expanding across borders.",
@@ -118,7 +127,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "NextWave Advisors",
     slug: "nextwave-advisors",
-    tagline: "Ride the Next Wave of Success",
+    tagline: "Advice that moves the needle.",
     sector: "Business Consulting and Advisory",
     summary:
       "Strategic advisory for business planning, finance, taxation, process transformation, and AI-enabled operations.",
@@ -135,7 +144,7 @@ export const companyDivisions: CompanyDivision[] = [
   {
     name: "Sathriyan Foods",
     slug: "sathriyan-foods",
-    tagline: "Food and Hospitality",
+    tagline: "Good food. Done right.",
     sector: "Food and Hospitality",
     summary:
       "Food and hospitality venture focused on restaurants, catering, packaged foods, and delivery services.",
@@ -151,9 +160,6 @@ export const companyDivisions: CompanyDivision[] = [
       "Catering clients",
       "Food delivery customers",
     ],
-    image: "/assets/home/food.jpg",
+    image: "/assets/home/events.jpg",
   },
 ];
-
-export const getDivisionBySlug = (slug: string) =>
-  companyDivisions.find((division) => division.slug === slug);

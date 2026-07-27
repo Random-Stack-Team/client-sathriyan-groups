@@ -14,6 +14,7 @@
   --color-brand-text: var(--brand-text);
   --color-brand-muted: var(--brand-muted);
   --color-brand-muted-light: var(--brand-muted-light);
+  --color-brand-footer: var(--brand-footer);
   --radius-brand: var(--radius-brand);
   --ease-brand: var(--ease-brand);
   --shadow-brand: var(--shadow-brand);
@@ -24,10 +25,26 @@
   --font-mono: "Courier New", Courier, monospace;
 }
 
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
+}
+
+.header-element-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-120%);
+  will-change: transform, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {

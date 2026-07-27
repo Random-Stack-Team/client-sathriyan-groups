@@ -3,16 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
+import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
-import { companyDivisions, companyProfile } from "@/lib";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-  { label: "About us", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+import { companyDivisions, companyProfile, navItems } from "@/lib";
 
 const socialItems = [
   {
@@ -28,34 +21,13 @@ const socialItems = [
   { name: "Phone", icon: "/assets/home/phone.png", iconClassName: "size-7" },
 ];
 
-const ecosystemClusters = [
-  {
-    title: "Property",
-    divisions: ["Sathriyan Builders", "Landmark Realty"],
-    description:
-      "Development, construction, sales, leasing, and property advisory working as one real estate pipeline.",
-  },
-  {
-    title: "Brand Experience",
-    divisions: ["Boldmark Agency", "Nexgen Events"],
-    description:
-      "Creative identity, campaigns, launches, exhibitions, and live brand moments shaped together.",
-  },
-  {
-    title: "Growth",
-    divisions: ["InterWorld Link", "NextWave Advisors", "Sathriyan Foods"],
-    description:
-      "Trade access, advisory support, and hospitality ventures built for scalable business expansion.",
-  },
-];
-
 export function LandingPage() {
   return (
-    <main className="bg-brand-surface text-brand-ink min-h-screen overflow-x-hidden">
+    <main className="bg-brand-surface text-brand-ink min-h-screen">
       <FloatingSocialLinks />
       <HeroSection />
       <OverviewSection />
-      <ServicesSection />
+      <AboutIntroSection />
       <UpcomingSection />
       <Footer />
     </main>
@@ -64,11 +36,12 @@ export function LandingPage() {
 
 function HeroSection() {
   return (
-    <section className="bg-brand-ink-muted relative min-h-[720px] overflow-hidden md:min-h-[820px]">
+    <section className="bg-brand-ink-muted relative min-h-[var(--hero-min-height-mobile)] overflow-hidden md:min-h-[var(--hero-min-height)]">
       <Image
         src="/assets/home/hero.jpg"
         alt="Luxury building exterior surrounded by palms"
         fill
+        sizes="100vw"
         priority
         className="object-cover opacity-90"
       />
@@ -76,11 +49,11 @@ function HeroSection() {
       <div className="from-brand-ink-muted/80 absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t to-transparent" />
       <Header navItems={navItems} />
 
-      <div className="relative z-10 mx-auto grid min-h-[720px] w-full max-w-[1240px] items-end px-6 pt-32 pb-10 md:min-h-[820px] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pb-16">
+      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] w-full max-w-[1240px] items-end px-6 pt-32 pb-10 md:min-h-[var(--hero-min-height)] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pb-16">
         <Reveal className="max-w-[760px] text-white" y={36}>
-          <p className="text-brand-gold mb-6 text-xs font-bold tracking-[0.24em] uppercase">
-            Diversified Group of Companies
-          </p>
+            <p className="text-brand-gold mb-6 text-xs font-bold tracking-[0.24em] uppercase">
+              Sathriyan Group
+            </p>
           <h1 className="font-display max-w-[760px] text-[42px] leading-[1.04] font-bold md:text-[76px]">
             {companyProfile.tagline}
           </h1>
@@ -98,7 +71,7 @@ function HeroSection() {
                     Explore the group
                   </span>
                   <span className="mt-1 block text-sm leading-6 text-white/56 transition duration-700 group-hover:text-white/72">
-                    See the divisions, sectors, and operating model.
+                    What we do and who we do it for.
                   </span>
                 </span>
                 <span className="group-hover:border-brand-gold/70 mt-2 grid size-9 place-items-center border border-white/18 transition duration-700 group-hover:translate-x-1 sm:mt-0">
@@ -118,17 +91,16 @@ function HeroSection() {
         </Reveal>
 
         <Reveal
-          className="mt-10 hidden text-white md:block"
+          className="hidden text-white md:block"
           delay={0.14}
           y={28}
         >
-          <div className="border border-white/16 bg-white/8 p-5 backdrop-blur-xl">
+          <div className="border border-white/16 bg-white/15 p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl">
             <p className="text-xs font-bold tracking-[0.18em] text-white/58 uppercase">
               First look
             </p>
             <p className="mt-3 max-w-[290px] text-sm leading-6 text-white/58">
-              A quick entry into property, events, and brand-led business
-              verticals.
+              A look at property, events, and brand work across the group.
             </p>
             <div className="mt-5 grid gap-4">
               {companyDivisions.slice(0, 3).map((division) => (
@@ -168,7 +140,7 @@ function FloatingSocialLinks() {
         <div
           key={item.name}
           aria-label={item.name}
-          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 grid size-11 place-items-center rounded-full border border-white/24 bg-white/12 text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] backdrop-blur-xl transition duration-300 hover:-translate-x-1"
+          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 grid size-11 place-items-center rounded-full border border-white/24 bg-[rgba(11,28,48,0.7)] text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] transition duration-300 hover:-translate-x-1"
         >
           <Image
             src={item.icon}
@@ -193,7 +165,7 @@ function OverviewSection() {
               Group Overview
             </p>
             <h2 className="font-display text-brand-ink mt-5 max-w-[620px] text-[38px] leading-[1.02] font-bold md:text-[64px]">
-              Built as one group. Operated through focused divisions.
+              Multiple businesses. One group.
             </h2>
             <div className="mt-10 grid max-w-[420px] grid-cols-2 border-y border-black/10 py-6">
               <div className="border-r border-black/10 pr-6">
@@ -217,10 +189,9 @@ function OverviewSection() {
 
           <div>
             <p className="text-brand-text max-w-[720px] text-xl leading-10">
-              Sathriyan Group brings together independent business divisions
-              across property, branding, events, advisory, trade, and
-              hospitality. Each vertical has its own focus, while the group
-              structure creates shared trust, reach, and operational strength.
+              Independent businesses, each with its own team and focus.
+              From construction to events to trade, they work separately but
+              share the same way of doing things.
             </p>
 
             <div className="mt-12 grid border-t border-black/8">
@@ -250,12 +221,12 @@ function OverviewSection() {
                 Operating Code
               </p>
               <h3 className="font-display text-brand-ink mt-4 max-w-[420px] text-[32px] leading-tight font-bold md:text-[44px]">
-                Three values. One operating standard.
+                How we work. Every time.
               </h3>
             </div>
             <p className="text-brand-muted max-w-[620px] text-base leading-8 lg:justify-self-end">
-              Each division has its own market, but the group is held together
-              by the same decision-making principles.
+              Different markets. Same principles. Every division follows the
+              same playbook, because consistency is what builds reputation.
             </p>
           </div>
 
@@ -297,7 +268,7 @@ function OverviewSection() {
                 Result
               </p>
               <p className="font-display text-brand-ink mt-3 max-w-[780px] text-[28px] leading-tight font-bold md:text-[38px] lg:mt-0 lg:text-right">
-                One shared standard across every Sathriyan company.
+                Same standard. Every company. No exceptions.
               </p>
             </div>
           </div>
@@ -307,95 +278,106 @@ function OverviewSection() {
   );
 }
 
-function ServicesSection() {
+function AboutIntroSection() {
   return (
-    <section className="bg-brand-surface px-6 py-16 md:px-0 md:py-24">
+    <section className="bg-brand-surface px-6 py-18 md:px-0 md:py-28">
       <div className="mx-auto max-w-[1242px]">
-        <Reveal className="grid gap-8 md:grid-cols-[460px_1fr] md:items-end">
+        <Reveal className="grid gap-8 md:grid-cols-[0.78fr_1fr] md:items-end">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.2em] uppercase">
-              Group Ecosystem
+              About Sathriyan Group
             </p>
-            <h2 className="font-display mt-4 text-[34px] leading-tight font-bold md:text-[56px]">
-              One group, connected by purpose.
+            <h2 className="font-display mt-4 text-[40px] leading-tight font-bold md:text-[66px]">
+              Companies that work together.
             </h2>
           </div>
           <p className="text-brand-muted max-w-[650px] text-base leading-8 md:text-lg">
-            The homepage introduces how Sathriyan Group works as an ecosystem.
-            Detailed service cards and individual offerings can live on the
-            dedicated Services page.
+            We started with one business. Then another. Now there are many,
+            each one doing its own thing, all running on the same trust and
+            quality.
           </p>
         </Reveal>
 
         <Reveal
-          className="rounded-brand shadow-brand-soft mt-14 grid overflow-hidden bg-white ring-1 ring-black/5 lg:grid-cols-[0.95fr_1.05fr]"
+          className="rounded-brand shadow-brand-soft mt-14 grid overflow-hidden bg-white ring-1 ring-black/5 lg:grid-cols-[0.82fr_1.18fr]"
           y={34}
         >
-          <div className="bg-brand-ink relative min-h-[420px]">
+          <div className="bg-brand-ink relative min-h-[440px]">
             <Image
-              src="/assets/home/construction.jpg"
-              alt="Sathriyan Group construction and real estate ecosystem"
+              src="/assets/home/hero.jpg"
+              alt="Sathriyan Group corporate profile"
               fill
               sizes="(min-width: 1024px) 590px, 100vw"
-              className="object-cover opacity-84"
+              loading="eager"
+              className="object-cover opacity-82"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.05)_0%,rgba(17,24,39,0.72)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.08)_0%,rgba(17,24,39,0.78)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-8 text-white md:p-10">
               <p className="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase">
-                Operating Model
+                Corporate Profile
               </p>
               <h3 className="font-display mt-4 max-w-[430px] text-[32px] leading-tight font-bold md:text-[44px]">
-                Divisions that support each other from idea to execution.
+                One project at a time.
               </h3>
             </div>
           </div>
 
           <div className="p-6 md:p-8 lg:p-10">
-            <div className="grid gap-px overflow-hidden rounded-[8px] bg-black/8">
-              {ecosystemClusters.map((cluster, index) => (
-                <article key={cluster.title} className="bg-white p-6">
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <span className="text-brand-muted-light text-xs font-bold">
-                        0{index + 1}
-                      </span>
-                      <h3 className="font-display text-brand-ink mt-3 text-2xl font-bold">
-                        {cluster.title}
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap justify-end gap-2">
-                      {cluster.divisions.map((division) => (
-                        <span
-                          key={division}
-                          className="bg-brand-surface text-brand-muted rounded-full px-3 py-1 text-[11px] font-bold"
-                        >
-                          {division}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-brand-muted mt-5 max-w-[620px] text-sm leading-7">
-                    {cluster.description}
+            <div className="border-y border-black/8">
+              <p className="text-brand-text max-w-[720px] py-7 text-lg leading-9 md:text-xl md:leading-10">
+                Every division started with one project. One client. One
+                result. That is how you build something real, not by doing
+                everything at once, but by doing the first thing well.
+              </p>
+            </div>
+
+            <div className="mt-8 border-y border-black/8">
+              {[
+                {
+                  label: "Profile",
+                  value:
+                    "Multiple businesses, each built by people who know their market. No generic playbook, just real experience.",
+                },
+                {
+                  label: "Role",
+                  value:
+                    "One name across different industries. Clients, partners, and teams know what to expect from a Sathriyan company.",
+                },
+                {
+                  label: "Direction",
+                  value:
+                    "We add businesses that make sense. Not for the sake of growth, but because they fit and they work.",
+                },
+              ].map((item) => (
+                <article
+                  key={item.label}
+                  className="grid gap-4 border-b border-black/8 py-5 last:border-b-0 md:grid-cols-[160px_1fr] md:items-start"
+                >
+                  <p className="text-brand-gold-deep text-xs font-bold tracking-[0.18em] uppercase">
+                    {item.label}
+                  </p>
+                  <p className="text-brand-ink max-w-[620px] text-lg leading-8 font-semibold">
+                    {item.value}
                   </p>
                 </article>
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 border-t border-black/8 pt-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-brand-ink text-sm font-bold">
-                  Explore all business divisions
+                  Want the full picture?
                 </p>
                 <p className="text-brand-muted mt-1 text-sm">
-                  {companyDivisions.length} focused verticals under Sathriyan
-                  Group.
+                  The About page tells the whole journey, from the first
+                  venture to where we are today.
                 </p>
               </div>
               <Link
-                href="/services"
+                href="/about"
                 className="group border-brand-ink/24 text-brand-ink ease-brand hover:border-brand-gold hover:text-brand-gold-deep inline-flex shrink-0 items-center justify-center gap-3 border-b pb-1.5 text-sm font-bold transition duration-700"
               >
-                <span>Services page</span>
+                <span>About page</span>
                 <ArrowUpRight className="size-4 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
@@ -416,12 +398,11 @@ function UpcomingSection() {
               Group Highlights
             </p>
             <h2 className="font-display text-brand-ink mt-4 text-[34px] leading-tight font-bold md:text-[52px]">
-              Current work across the group.
+              What we are working on.
             </h2>
           </div>
           <p className="text-brand-muted max-w-[520px] text-base leading-8">
-            A focused view of active construction work and upcoming event
-            activity from Sathriyan Group divisions.
+            Active projects and upcoming events from across the group.
           </p>
         </Reveal>
 
@@ -432,7 +413,7 @@ function UpcomingSection() {
               eyebrow="Undergoing Project"
               division="Sathriyan Builders"
               title="Sathriyan Builders Ongoing Project"
-              description="An active project showcase from the real estate and construction division."
+              description="Work in progress from the construction and real estate team."
               href="/services/sathriyan-builders"
               details={[
                 { label: "Project", value: "Ongoing development" },
@@ -448,7 +429,7 @@ function UpcomingSection() {
               eyebrow="Upcoming Event"
               division="Nexgen Events"
               title="Anirudh Music Festival"
-              description="A live entertainment event presented through the Nexgen Events division."
+              description="A live music event by Nexgen Events."
               href="/services/nexgen-events"
               details={[
                 { label: "Date", value: "Oct 12, 2026" },
@@ -491,6 +472,7 @@ function ShowcaseCard({
           src={image}
           alt={`${division} ${title}`}
           fill
+          loading="eager"
           sizes="(min-width: 1024px) 610px, 100vw"
           className="ease-brand object-cover opacity-100 saturate-[1.05] transition duration-[1400ms] group-hover:scale-[1.045] group-hover:saturate-[1.12]"
         />
@@ -498,7 +480,7 @@ function ShowcaseCard({
         <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0)_100%)] opacity-70" />
         <div className="absolute inset-0 flex flex-col justify-end p-5 text-white sm:p-6">
           <div className="ease-brand mb-3 transition duration-[1150ms] md:group-hover:-translate-y-1">
-            <div className="border-brand-gold-bright inline-flex items-center gap-2.5 border-l-2 bg-black/18 py-1.5 pr-3 pl-3 backdrop-blur-xl">
+            <div className="border-brand-gold-bright inline-flex items-center gap-2.5 border-l-2 bg-[rgba(17,24,39,0.6)] py-1.5 pr-3 pl-3">
               <span className="bg-brand-gold-bright size-2.5 animate-pulse rounded-full shadow-[0_0_18px_rgba(241,215,120,0.75)]" />
               <span className="text-brand-gold-bright text-xs font-black tracking-[0.18em] uppercase drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]">
                 {eyebrow}
@@ -512,7 +494,7 @@ function ShowcaseCard({
             {title}
           </h3>
 
-          <div className="rounded-brand bg-brand-ink-soft/72 ease-brand md:group-hover:bg-brand-ink-soft/72 mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] backdrop-blur-2xl transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:backdrop-blur-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] md:group-hover:backdrop-blur-2xl">
+            <div className="rounded-brand bg-[rgba(11,28,48,0.88)] ease-brand md:group-hover:bg-[rgba(11,28,48,0.88)] mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)]">
             <p className="ease-brand max-w-[520px] text-sm leading-6 text-white/82 transition duration-[1100ms] md:translate-y-1.5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
               {description}
             </p>
@@ -542,70 +524,5 @@ function ShowcaseCard({
         </div>
       </div>
     </article>
-  );
-}
-
-function Footer() {
-  const quickLinks = navItems.filter((item) => item.label !== "Home");
-
-  return (
-    <footer className="bg-brand-ink-soft px-6 text-white md:px-0">
-      <Reveal className="mx-auto max-w-[1240px] py-12" y={24}>
-        <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1fr_1.35fr] lg:items-start">
-          <div>
-            <div className="inline-flex">
-              <Image
-                src="/assets/logo/sathriyan-generated-logo-light.png"
-                alt="Sathriyan Group"
-                width={1128}
-                height={1108}
-                className="h-24 w-auto object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.45)] md:h-32"
-              />
-            </div>
-            <h2 className="font-display mt-7 max-w-[560px] text-[30px] leading-tight font-bold md:text-[42px]">
-              {companyProfile.tagline}
-            </h2>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.72fr]">
-            <div>
-              <p className="max-w-[640px] text-sm leading-7 text-white/58 md:text-base">
-                {companyProfile.summary}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {companyDivisions.map((division) => (
-                  <Link
-                    key={division.slug}
-                    href={`/services/${division.slug}`}
-                    className="hover:border-brand-gold/60 rounded-full border border-white/10 px-3 py-1.5 text-xs font-bold text-white/54 transition duration-300 hover:text-white"
-                  >
-                    {division.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="lg:justify-self-end">
-              <div className="flex flex-wrap gap-3 lg:justify-end">
-                {quickLinks.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="hover:text-brand-gold text-sm font-bold text-white/58 transition duration-300"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3 pt-5 text-xs font-semibold tracking-wide text-white/36 sm:flex-row sm:items-center sm:justify-between">
-          <span>Copyright 2026 Sathriyan Group. All rights reserved.</span>
-          <span>Crafted By Random Stack Technologies</span>
-        </div>
-      </Reveal>
-    </footer>
   );
 }

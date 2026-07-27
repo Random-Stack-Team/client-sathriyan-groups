@@ -29,7 +29,7 @@ export function CustomSelect({
         <span className={selected ? "" : "text-brand-muted-light"}>
           {selected || placeholder}
         </span>
-        <span className="text-brand-muted ease-brand grid size-9 place-items-center border border-black/10 transition duration-500">
+        <span className="text-brand-muted ease-brand grid size-9 place-items-center rounded-lg border border-black/10 transition duration-500">
           <ChevronDown
             className={`ease-brand size-4 transition duration-500 ${
               isOpen ? "rotate-180" : ""
@@ -39,7 +39,7 @@ export function CustomSelect({
       </button>
 
       {isOpen ? (
-        <div className="absolute right-0 left-0 z-30 mt-3 overflow-hidden border border-black/8 bg-white shadow-[0_24px_70px_rgba(17,24,39,0.16)]">
+        <div className="absolute right-0 left-0 z-30 mt-3 overflow-hidden rounded-xl border border-black/8 bg-white shadow-[0_24px_70px_rgba(17,24,39,0.16)]">
           <div className="max-h-72 overflow-y-auto p-2">
             {options.map((option) => (
               <button

@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type NavItem = {
   label: string;
@@ -13,53 +13,71 @@ export type NavItem = {
 
 export function Header({ navItems }: { navItems: NavItem[] }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-
   const pathname = usePathname();
 
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+  const isHidden = useRef(false);
 
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDifference = currentScrollY - lastScrollY;
+  const navRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
 
-      // Always show at the top
-      if (currentScrollY <= 20) {
-        setIsVisible(true);
+  const handleScroll = useCallback(() => {
+    if (ticking.current) return;
+    ticking.current = true;
+
+    window.requestAnimationFrame(() => {
+      const y = window.scrollY;
+      const delta = y - lastScrollY.current;
+
+      const newAtTop = y < 72;
+
+      let newHidden = isHidden.current;
+      if (newAtTop) {
+        newHidden = false;
+      } else if (delta > 8) {
+        newHidden = true;
+      } else if (delta < -10) {
+        newHidden = false;
       }
 
-      // Scrolling down
-      else if (scrollDifference > 5) {
-        setIsVisible(false);
-        setIsOpen(false);
+      if (newHidden !== isHidden.current) {
+        isHidden.current = newHidden;
+        navRef.current?.classList.toggle("header-element-hidden", newHidden);
+        btnRef.current?.classList.toggle("header-element-hidden", newHidden);
+        logoRef.current?.classList.toggle("header-element-hidden", y > 72);
       }
 
-      // Scrolling up
-      else if (scrollDifference < -5) {
-        setIsVisible(true);
-      }
+      logoRef.current?.classList.toggle("header-element-hidden", y > 72);
 
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+      lastScrollY.current = y;
+      ticking.current = false;
+    });
   }, []);
 
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  // Reset scroll state on navigation so nav always shows on new page
+  useEffect(() => {
+    lastScrollY.current = 0;
+    isHidden.current = false;
+    navRef.current?.classList.remove("header-element-hidden");
+    btnRef.current?.classList.remove("header-element-hidden");
+    logoRef.current?.classList.remove("header-element-hidden");
+  }, [pathname]);
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-transform duration-500 ease-out ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="relative mx-auto flex h-28 max-w-[1240px] items-center justify-between px-6 lg:h-[124px] lg:px-0">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="relative mx-auto h-24 max-w-[1240px] px-4 sm:h-28 sm:px-6 lg:h-[124px] lg:px-0">
         <Link
+          ref={logoRef}
           href="/"
-          className="group flex h-[82px] w-[258px] items-center text-white transition duration-300 hover:opacity-90 lg:h-[94px] lg:w-[330px]"
+          className="absolute top-1/2 left-4 block h-[88px] w-[88px] -translate-y-1/2 overflow-hidden text-white lg:left-0"
           aria-label="Sathriyan Group home"
         >
           <Image
@@ -68,15 +86,16 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
             width={1128}
             height={1108}
             priority
-            className="h-full w-auto object-contain drop-shadow-[0_10px_22px_rgba(0,0,0,0.46)] transition duration-300 group-hover:scale-[1.01]"
+            className="h-[88px] w-[88px] max-h-[88px] max-w-[88px] object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.42)]"
           />
         </Link>
 
         <nav
+          ref={navRef}
           aria-label="Primary navigation"
-          className="absolute left-1/2 hidden -translate-x-1/2 lg:block"
+          className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 transition-[transform,opacity] duration-300 ease-brand will-change-[transform,opacity] lg:block"
         >
-          <div className="bg-brand-ink-soft/42 flex items-center gap-1.5 rounded-full border border-white/18 p-2 shadow-[0_22px_64px_rgba(0,0,0,0.26)] backdrop-blur-2xl">
+          <div className="flex items-center gap-1.5 rounded-full border border-white/18 bg-[rgba(11,28,48,0.85)] p-2 shadow-[0_22px_64px_rgba(0,0,0,0.26)]">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -94,11 +113,12 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
         </nav>
 
         <button
+          ref={btnRef}
           type="button"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
-          className="bg-brand-ink-soft/38 grid size-12 place-items-center rounded-full border border-white/22 text-white shadow-[0_12px_34px_rgba(0,0,0,0.2)] backdrop-blur-2xl lg:hidden"
+          onClick={() => setIsOpen((v) => !v)}
+          className="absolute top-1/2 right-4 grid size-12 -translate-y-1/2 place-items-center rounded-full border border-white/22 bg-[rgba(11,28,48,0.85)] text-white shadow-[0_12px_34px_rgba(0,0,0,0.2)] transition-[transform,opacity] duration-300 ease-brand will-change-[transform,opacity] sm:right-6 lg:hidden"
         >
           {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -106,7 +126,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
         {isOpen && (
           <nav
             aria-label="Mobile navigation"
-            className="bg-brand-ink-soft/96 absolute inset-x-6 top-[98px] rounded-[14px] border border-white/16 p-3 shadow-[0_22px_64px_rgba(16,32,48,0.38)] backdrop-blur-2xl lg:hidden"
+            className="absolute inset-x-4 top-[86px] rounded-[14px] border border-white/16 bg-[rgba(11,28,48,0.95)] p-3 shadow-[0_22px_64px_rgba(16,32,48,0.38)] sm:inset-x-6 sm:top-[98px] lg:hidden"
           >
             {navItems.map((item) => (
               <Link

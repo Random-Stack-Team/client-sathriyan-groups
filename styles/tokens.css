@@ -11,8 +11,11 @@
   --brand-text: #4b5563;
   --brand-muted: #667085;
   --brand-muted-light: #98a2b3;
+  --brand-footer: #0a0f1a;
   --radius-brand: 8px;
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
   --shadow-brand: 0 24px 70px rgba(17, 24, 39, 0.14);
   --shadow-brand-soft: 0 24px 70px rgba(17, 24, 39, 0.08);
+  --hero-min-height: 820px;
+  --hero-min-height-mobile: 720px;
 }
