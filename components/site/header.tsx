@@ -69,11 +69,11 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="relative mx-auto h-24 max-w-[var(--container-max)] px-4 sm:h-28 sm:px-6 lg:h-[124px] lg:px-0">
+      <div className="relative mx-auto h-20 max-w-[var(--container-max)] px-4 sm:h-24 sm:px-6 lg:h-[124px] lg:px-0">
         <Link
           ref={logoRef}
           href="/"
-          className="absolute top-1/2 left-4 block h-[88px] w-[88px] -translate-y-1/2 overflow-hidden text-white lg:left-0"
+          className="absolute top-1/2 left-4 block h-[64px] w-[64px] -translate-y-1/2 overflow-hidden text-white sm:h-[74px] sm:w-[74px] lg:left-0 lg:h-[88px] lg:w-[88px]"
           aria-label="Sathriyan Group home"
         >
           <Image
@@ -82,16 +82,16 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
             width={1128}
             height={1108}
             priority
-            className="h-[88px] w-[88px] max-h-[88px] max-w-[88px] object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.42)]"
+            className="h-full w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.42)]"
           />
         </Link>
 
         <nav
           ref={navRef}
           aria-label="Primary navigation"
-          className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 transition-[transform,opacity] duration-300 ease-brand will-change-[transform,opacity] lg:block"
+          className="ease-brand absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 transition-[transform,opacity] duration-300 will-change-[transform,opacity] lg:block"
         >
-          <div className="flex items-center gap-1.5 rounded-full border border-white/18 bg-brand-ink-soft/85 p-2 shadow-[0_22px_64px_rgba(0,0,0,0.26)]">
+          <div className="bg-brand-ink-soft/85 flex items-center gap-1.5 rounded-full border border-white/18 p-2 shadow-[0_22px_64px_rgba(0,0,0,0.26)]">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -99,7 +99,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 className={`relative rounded-full px-5 py-3 text-sm leading-5 font-bold text-white/80 transition duration-300 ${
                   pathname === item.href
                     ? "bg-white/18 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-white/24"
-                    : "hover:bg-white/10 hover:text-brand-gold"
+                    : "hover:text-brand-gold hover:bg-white/10"
                 }`}
               >
                 {item.label}
@@ -114,7 +114,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((v) => !v)}
-          className="absolute top-1/2 right-4 grid size-12 -translate-y-1/2 place-items-center rounded-full border border-white/22 bg-brand-ink-soft/85 text-white shadow-[0_12px_34px_rgba(0,0,0,0.2)] transition-[transform,opacity] duration-300 ease-brand will-change-[transform,opacity] sm:right-6 lg:hidden"
+          className="bg-brand-ink-soft/85 ease-brand absolute top-1/2 right-4 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/22 text-white shadow-[0_12px_34px_rgba(0,0,0,0.2)] transition-[transform,opacity] duration-300 will-change-[transform,opacity] sm:right-6 sm:size-12 lg:hidden"
         >
           {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -122,7 +122,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
         {isOpen && (
           <nav
             aria-label="Mobile navigation"
-            className="absolute inset-x-4 top-[86px] rounded-[14px] border border-white/16 bg-brand-ink-soft/95 p-3 shadow-[0_22px_64px_rgba(16,32,48,0.38)] sm:inset-x-6 sm:top-[98px] lg:hidden"
+            className="bg-brand-ink-soft/95 absolute inset-x-4 top-[74px] rounded-[14px] border border-white/16 p-3 shadow-[0_22px_64px_rgba(16,32,48,0.38)] sm:inset-x-6 sm:top-[88px] lg:hidden"
           >
             {navItems.map((item) => (
               <Link
@@ -131,8 +131,8 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 onClick={() => setIsOpen(false)}
                 className={`block rounded-[10px] px-4 py-3 text-sm font-bold transition duration-300 ${
                   pathname === item.href
-                    ? "bg-white text-brand-ink"
-                    : "text-white hover:bg-white/10 hover:text-brand-gold"
+                    ? "text-brand-ink bg-white"
+                    : "hover:text-brand-gold text-white hover:bg-white/10"
                 }`}
               >
                 {item.label}

@@ -6,6 +6,16 @@ import Lenis from "lenis";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    const isMobileWidth = window.matchMedia("(max-width: 767px)").matches;
+
+    if (prefersReducedMotion || isTouchDevice || isMobileWidth) {
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -13,17 +23,19 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
     });
+
+    let frame = 0;
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      frame = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    frame = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(frame);
       lenis.destroy();
     };
   }, []);

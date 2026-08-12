@@ -24,7 +24,7 @@ export function LandingPage() {
   return (
     <main className="bg-brand-surface text-brand-ink min-h-screen">
       <FloatingSocialLinks />
-      <HeroSection />      <OverviewSection />
+      <HeroSection /> <OverviewSection />
       <AboutIntroSection />
       <UpcomingSection />
       <Footer />
@@ -46,12 +46,12 @@ function HeroSection() {
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,20,32,0.9)_0%,rgba(10,20,32,0.7)_46%,rgba(10,20,32,0.18)_100%)]" />
       <div className="from-brand-ink-muted/80 absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t to-transparent" />
 
-      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] w-full max-w-[var(--container-max)] items-end px-6 pt-32 pb-10 md:min-h-[var(--hero-min-height)] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pb-16">
+      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] w-full max-w-[var(--container-max)] items-end px-5 pt-28 pb-10 sm:px-6 md:min-h-[var(--hero-min-height)] md:grid-cols-[1fr_372px] md:gap-20 md:px-0 md:pt-32 md:pb-16">
         <Reveal className="max-w-[760px] text-white" y={36}>
-            <p className="text-brand-gold mb-6 text-xs font-bold tracking-[0.24em] uppercase">
-              Sathriyan Group
-            </p>
-          <h1 className="font-display max-w-[760px] text-[42px] leading-[1.04] font-bold md:text-[76px]">
+          <p className="text-brand-gold mb-6 text-xs font-bold tracking-[0.24em] uppercase">
+            Sathriyan Group
+          </p>
+          <h1 className="font-display max-w-[760px] text-[38px] leading-[1.05] font-bold sm:text-[42px] md:text-[76px]">
             {companyProfile.tagline}
           </h1>
           <p className="mt-7 max-w-[660px] text-[17px] leading-8 text-white/78 md:text-xl md:leading-9">
@@ -87,12 +87,8 @@ function HeroSection() {
           </div>
         </Reveal>
 
-        <Reveal
-          className="hidden text-white md:block"
-          delay={0.14}
-          y={28}
-        >
-          <div className="border border-white/16 bg-white/15 p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+        <div className="hidden text-white md:block">
+          <div className="transform-gpu border border-white/16 bg-white/15 p-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl will-change-auto">
             <p className="text-xs font-bold tracking-[0.18em] text-white/58 uppercase">
               First look
             </p>
@@ -124,7 +120,7 @@ function HeroSection() {
               <ArrowUpRight className="size-3.5" />
             </Link>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -132,12 +128,12 @@ function HeroSection() {
 
 function FloatingSocialLinks() {
   return (
-    <div className="fixed top-1/2 right-4 z-50 flex -translate-y-1/2 flex-col items-center gap-2.5 md:right-8">
+    <div className="fixed top-1/2 right-4 z-50 hidden -translate-y-1/2 flex-col items-center gap-2.5 sm:flex md:right-8">
       {socialItems.map((item) => (
         <div
           key={item.name}
           aria-label={item.name}
-          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 grid size-11 place-items-center rounded-full border border-white/24 bg-brand-ink-soft/70 text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] transition duration-300 hover:-translate-x-1"
+          className="hover:border-brand-gold/70 hover:bg-brand-gold/22 bg-brand-ink-soft/70 grid size-11 place-items-center rounded-full border border-white/24 text-white shadow-[0_14px_34px_rgba(17,24,39,0.18)] transition duration-300 hover:-translate-x-1"
         >
           <Image
             src={item.icon}
@@ -186,9 +182,9 @@ function OverviewSection() {
 
           <div>
             <p className="text-brand-text max-w-[720px] text-xl leading-10">
-              Independent businesses, each with its own team and focus.
-              From construction to events to trade, they work separately but
-              share the same way of doing things.
+              Independent businesses, each with its own team and focus. From
+              construction to events to trade, they work separately but share
+              the same way of doing things.
             </p>
 
             <div className="mt-12 grid border-t border-black/8">
@@ -289,9 +285,8 @@ function AboutIntroSection() {
             </h2>
           </div>
           <p className="text-brand-muted max-w-[650px] text-base leading-8 md:text-lg">
-            We started with one business. Then another. Now there are many,
-            each one doing its own thing, all running on the same trust and
-            quality.
+            We started with one business. Then another. Now there are many, each
+            one doing its own thing, all running on the same trust and quality.
           </p>
         </Reveal>
 
@@ -322,9 +317,9 @@ function AboutIntroSection() {
           <div className="p-6 md:p-8 lg:p-10">
             <div className="border-y border-black/8">
               <p className="text-brand-text max-w-[720px] py-7 text-lg leading-9 md:text-xl md:leading-10">
-                Every division started with one project. One client. One
-                result. That is how you build something real, not by doing
-                everything at once, but by doing the first thing well.
+                Every division started with one project. One client. One result.
+                That is how you build something real, not by doing everything at
+                once, but by doing the first thing well.
               </p>
             </div>
 
@@ -366,8 +361,8 @@ function AboutIntroSection() {
                   Want the full picture?
                 </p>
                 <p className="text-brand-muted mt-1 text-sm">
-                  The About page tells the whole journey, from the first
-                  venture to where we are today.
+                  The About page tells the whole journey, from the first venture
+                  to where we are today.
                 </p>
               </div>
               <Link
@@ -491,7 +486,7 @@ function ShowcaseCard({
             {title}
           </h3>
 
-            <div className="rounded-brand bg-brand-ink-soft/88 ease-brand md:group-hover:bg-brand-ink-soft/88 mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)]">
+          <div className="rounded-brand bg-brand-ink-soft/88 ease-brand md:group-hover:bg-brand-ink-soft/88 mt-3 origin-bottom overflow-hidden border border-white/18 p-4 opacity-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)] transition-all duration-[1250ms] md:pointer-events-none md:invisible md:max-h-0 md:translate-y-4 md:scale-[0.985] md:border-transparent md:bg-transparent md:p-0 md:opacity-0 md:shadow-none md:group-hover:pointer-events-auto md:group-hover:visible md:group-hover:max-h-[340px] md:group-hover:translate-y-0 md:group-hover:scale-100 md:group-hover:border-white/18 md:group-hover:p-4 md:group-hover:opacity-100 md:group-hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_54px_rgba(0,0,0,0.22)]">
             <p className="ease-brand max-w-[520px] text-sm leading-6 text-white/82 transition duration-[1100ms] md:translate-y-1.5 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
               {description}
             </p>

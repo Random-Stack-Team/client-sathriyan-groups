@@ -21,13 +21,13 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={false}
+      initial={reduceMotion ? false : { opacity: 0, y }}
       whileInView={
         reduceMotion
           ? undefined
           : {
-              opacity: [0, 1],
-              y: [y, 0],
+              opacity: 1,
+              y: 0,
             }
       }
       viewport={{ once: true, amount: 0.12, margin: "0px 0px -40px 0px" }}

@@ -54,25 +54,28 @@ export function ContactPage() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,48,0.96)_0%,rgba(11,28,48,0.84)_52%,rgba(11,28,48,0.42)_100%)]" />
 
-        <div className="relative z-10 mx-auto grid max-w-[var(--container-max)] items-center px-6 pt-32 pb-16 md:px-0 md:pt-40 md:pb-20">
-          <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center" y={36}>
+        <div className="relative z-10 mx-auto grid max-w-[var(--container-max)] items-center px-5 pt-28 pb-12 sm:px-6 md:px-0 md:pt-40 md:pb-20">
+          <Reveal
+            className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center"
+            y={36}
+          >
             <div>
               <p className="text-brand-gold text-xs font-bold tracking-[0.24em] uppercase">
                 Contact Sathriyan Group
               </p>
-              <h1 className="font-display mt-6 max-w-[840px] text-[42px] leading-[1.06] font-bold md:text-[76px] md:leading-[1.03]">
+              <h1 className="font-display mt-6 max-w-[840px] text-[40px] leading-[1.06] font-bold sm:text-[42px] md:text-[76px] md:leading-[1.03]">
                 Let&apos;s start a conversation.
               </h1>
             </div>
             <p className="border-y border-white/14 py-6 text-base leading-8 text-white/72 md:text-lg lg:border-y-0 lg:border-l lg:py-3 lg:pl-8">
-              Got a project in mind? Want to work with a specific division?
-              Or just have a question about the group? We are here.
+              Got a project in mind? Want to work with a specific division? Or
+              just have a question about the group? We are here.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="px-6 pt-14 md:px-0 md:pt-20">
+      <section className="px-5 pt-12 sm:px-6 md:px-0 md:pt-20">
         <div className="mx-auto max-w-[var(--container-max)]">
           <Reveal>
             <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -90,38 +93,38 @@ export function ContactPage() {
               </p>
             </div>
 
-            <div className="grid gap-5 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
               {contactChannels.map((item) => {
                 const Icon = item.icon;
 
                 return (
                   <article
                     key={item.title}
-                    className="group min-h-[190px] bg-white p-5 shadow-brand-soft ring-1 ring-black/5 transition duration-700 hover:-translate-y-1 hover:bg-brand-ink-soft hover:shadow-brand md:p-6"
+                    className="group shadow-brand-soft hover:bg-brand-ink-soft hover:shadow-brand min-h-[170px] bg-white p-5 ring-1 ring-black/5 transition duration-700 hover:-translate-y-1 md:min-h-[190px] md:p-6"
                   >
                     <div className="flex min-h-[150px] flex-col justify-between">
                       <div className="flex items-start gap-4">
-                        <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-surface text-brand-gold-deep ring-1 ring-black/8 transition duration-700 group-hover:bg-white/10 group-hover:text-brand-gold group-hover:ring-white/12">
+                        <span className="bg-brand-surface text-brand-gold-deep group-hover:text-brand-gold grid size-11 shrink-0 place-items-center rounded-full ring-1 ring-black/8 transition duration-700 group-hover:bg-white/10 group-hover:ring-white/12">
                           <Icon className="size-5" strokeWidth={1.8} />
                         </span>
                         <div className="pt-0.5">
                           <p className="text-brand-muted text-xs font-bold tracking-[0.2em] uppercase transition duration-700 group-hover:text-white/48">
                             {item.title}
                           </p>
-                          <p className="mt-1 text-brand-muted-light text-xs font-bold tracking-[0.18em] uppercase transition duration-700 group-hover:text-white/38">
+                          <p className="text-brand-muted-light mt-1 text-xs font-bold tracking-[0.18em] uppercase transition duration-700 group-hover:text-white/38">
                             {item.label}
                           </p>
                         </div>
                       </div>
                       <div>
-                        <h3 className="font-display max-w-[310px] text-[21px] leading-tight font-bold text-brand-ink transition duration-700 group-hover:text-white md:text-[24px]">
+                        <h3 className="font-display text-brand-ink max-w-[310px] text-[21px] leading-tight font-bold transition duration-700 group-hover:text-white md:text-[24px]">
                           {item.value}
                         </h3>
                         <div className="mt-5 flex items-center gap-3 border-t border-black/8 pt-4 transition duration-700 group-hover:border-white/12">
-                          <span className="text-brand-ink text-sm font-bold transition duration-700 group-hover:text-brand-gold">
+                          <span className="text-brand-ink group-hover:text-brand-gold text-sm font-bold transition duration-700">
                             Sathriyan Group
                           </span>
-                          <ArrowUpRight className="size-4 text-brand-gold-deep transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          <ArrowUpRight className="text-brand-gold-deep size-4 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </div>
                       </div>
                     </div>
@@ -133,7 +136,7 @@ export function ContactPage() {
         </div>
       </section>
 
-      <section className="px-6 py-18 md:px-0 md:py-28">
+      <section className="px-5 py-16 sm:px-6 md:px-0 md:py-28">
         <div className="mx-auto grid max-w-[var(--container-max)] gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
           <Reveal>
             <div className="lg:sticky lg:top-28">
@@ -145,8 +148,8 @@ export function ContactPage() {
               </h2>
               <p className="text-brand-muted mt-6 max-w-[480px] text-base leading-8">
                 Tell us which division you want to reach, what the project is
-                about, and how soon you need to get started. That helps us
-                route things to the right team.
+                about, and how soon you need to get started. That helps us route
+                things to the right team.
               </p>
 
               <div className="mt-10 border-y border-black/8 py-6">
@@ -173,7 +176,7 @@ export function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="rounded-[24px] shadow-brand-soft overflow-hidden bg-white ring-1 ring-black/5">
+            <div className="shadow-brand-soft overflow-hidden rounded-[24px] bg-white ring-1 ring-black/5">
               <div className="bg-brand-ink-soft px-6 py-6 text-white md:px-8 lg:px-10">
                 <p className="text-brand-gold text-xs font-bold tracking-[0.18em] uppercase">
                   Enquiry Form

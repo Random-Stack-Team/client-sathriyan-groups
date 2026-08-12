@@ -101,13 +101,16 @@ function AboutHero() {
         className="object-cover opacity-48"
       />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,48,0.96)_0%,rgba(11,28,48,0.78)_56%,rgba(11,28,48,0.34)_100%)]" />
-      <div className="relative z-10 mx-auto grid min-h-[var(--hero-min-height-mobile)] max-w-[var(--container-max)] items-center px-6 pt-28 pb-8 md:min-h-[var(--hero-min-height)] md:px-0 md:pt-32 md:pb-10">
-        <Reveal className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center" y={36}>
+      <div className="relative z-10 mx-auto grid min-h-[640px] max-w-[var(--container-max)] items-center px-5 pt-28 pb-8 sm:px-6 md:min-h-[var(--hero-min-height)] md:px-0 md:pt-32 md:pb-10">
+        <Reveal
+          className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-center"
+          y={36}
+        >
           <div>
             <p className="text-brand-gold text-xs font-bold tracking-[0.24em] uppercase">
               About Sathriyan Group
             </p>
-            <h1 className="font-display mt-6 max-w-[840px] text-[42px] leading-[1.06] font-bold md:text-[76px] md:leading-[1.03]">
+            <h1 className="font-display mt-6 max-w-[840px] text-[40px] leading-[1.06] font-bold sm:text-[42px] md:text-[76px] md:leading-[1.03]">
               How one venture became seven.
             </h1>
           </div>
@@ -118,9 +121,8 @@ function AboutHero() {
               all connected by the same values.
             </p>
             <p className="text-brand-muted-light mt-5 text-sm leading-7">
-              Founded in 2021, the group runs independent divisions,
-              each one focused on its own market, each one built on the same
-              trust.
+              Founded in 2021, the group runs independent divisions, each one
+              focused on its own market, each one built on the same trust.
             </p>
           </div>
         </Reveal>
@@ -137,7 +139,7 @@ function CompanyStory() {
     <section className="bg-white px-6 py-20 md:px-0 md:py-28">
       <div className="mx-auto max-w-[var(--container-max)]">
         <Reveal className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <div className="relative min-h-[560px] overflow-hidden rounded-brand bg-brand-ink">
+          <div className="rounded-brand bg-brand-ink relative min-h-[360px] overflow-hidden md:min-h-[560px]">
             <Image
               src="/assets/home/construction.jpg"
               alt="Sathriyan Group construction story"
@@ -146,7 +148,7 @@ function CompanyStory() {
               className="object-cover opacity-88"
             />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.04)_0%,rgba(17,24,39,0.82)_100%)]" />
-            <p className="font-display absolute right-6 bottom-6 left-6 text-[42px] leading-tight font-bold text-white md:right-8 md:bottom-8 md:left-8 md:text-[64px]">
+            <p className="font-display absolute right-6 bottom-6 left-6 text-[34px] leading-tight font-bold text-white md:right-8 md:bottom-8 md:left-8 md:text-[64px]">
               One venture led to another.
             </p>
           </div>
@@ -160,19 +162,19 @@ function CompanyStory() {
             </h2>
             <div className="mt-8 space-y-6 border-y border-black/8 py-7">
               <p className="text-brand-text text-xl leading-10">
-                It started with one question: what do people actually need
-                from a business group? The answer was simple: reliability. Do
-                what you say. Deliver what you promise. And keep doing it.
+                It started with one question: what do people actually need from
+                a business group? The answer was simple: reliability. Do what
+                you say. Deliver what you promise. And keep doing it.
               </p>
               <p className="text-brand-muted text-base leading-8">
                 The group structure was not about building an empire. It was
-                about giving each business the space to grow, while keeping
-                the standards that made people trust us in the first place.
+                about giving each business the space to grow, while keeping the
+                standards that made people trust us in the first place.
               </p>
               <p className="text-brand-muted text-base leading-8">
-                From the first division to the seventh, every new venture had
-                to earn its place. Not every idea made the cut. The ones that
-                did, they are the businesses you see today.
+                From the first division to the seventh, every new venture had to
+                earn its place. Not every idea made the cut. The ones that did,
+                they are the businesses you see today.
               </p>
             </div>
           </div>
@@ -190,8 +192,8 @@ function MetricsSection() {
     <section className="bg-white px-6 pb-20 md:px-0 md:pb-28">
       <Reveal className="mx-auto max-w-[var(--container-max)]">
         <div className="grid overflow-hidden border-y border-black/8 bg-white lg:grid-cols-[0.82fr_1.18fr]">
-          <div className="relative overflow-hidden bg-brand-ink-soft p-7 text-white md:p-10">
-            <div className="absolute right-0 bottom-0 h-px w-2/3 bg-brand-gold/30" />
+          <div className="bg-brand-ink-soft relative overflow-hidden p-7 text-white md:p-10">
+            <div className="bg-brand-gold/30 absolute right-0 bottom-0 h-px w-2/3" />
             <p className="text-brand-gold text-xs font-bold tracking-[0.22em] uppercase">
               Sathriyan Group&apos;s Foundation
             </p>
@@ -220,7 +222,7 @@ function MetricsSection() {
               {guidingPrinciples.map((principle) => (
                 <article
                   key={principle.title}
-                  className="group border-l border-black/10 py-2 pl-5 transition duration-700 hover:border-brand-gold-deep"
+                  className="group hover:border-brand-gold-deep border-l border-black/10 py-2 pl-5 transition duration-700"
                 >
                   <h3 className="font-display text-brand-ink text-2xl font-bold">
                     {principle.title}
@@ -309,8 +311,8 @@ function MissionVision() {
           </p>
         </Reveal>
 
-        <Reveal className="grid overflow-hidden rounded-brand bg-brand-ink-soft shadow-brand lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="relative min-h-[520px] overflow-hidden">
+        <Reveal className="rounded-brand bg-brand-ink-soft shadow-brand grid overflow-hidden lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="relative min-h-[360px] overflow-hidden md:min-h-[520px]">
             <Image
               src="/assets/home/interworld.jpg"
               alt="Sathriyan Group direction and growth"
@@ -323,7 +325,7 @@ function MissionVision() {
               <p className="text-brand-gold text-xs font-bold tracking-[0.22em] uppercase">
                 Strategic Compass
               </p>
-              <p className="font-display mt-4 max-w-[520px] text-[38px] leading-tight font-bold text-white md:text-[56px]">
+              <p className="font-display mt-4 max-w-[520px] text-[32px] leading-tight font-bold text-white md:text-[56px]">
                 Focused companies. One group standard.
               </p>
             </div>
@@ -335,12 +337,14 @@ function MissionVision() {
               {[
                 {
                   label: "Mission",
-                  title: "Turn practical business needs into dependable outcomes.",
+                  title:
+                    "Turn practical business needs into dependable outcomes.",
                   text: "We build each Sathriyan division around a clear market need, then serve it with consistent execution, transparent communication, and measurable value.",
                 },
                 {
                   label: "Vision",
-                  title: "Create a trusted group identity that grows with purpose.",
+                  title:
+                    "Create a trusted group identity that grows with purpose.",
                   text: "Our goal is not to add businesses for the sake of size, but to grow divisions that earn trust, strengthen the group, and create long-term relevance.",
                 },
               ].map((item) => (
@@ -348,14 +352,14 @@ function MissionVision() {
                   key={item.label}
                   className="group relative grid gap-5 border-b border-white/12 pb-8 last:border-b-0 last:pb-0 sm:grid-cols-[52px_1fr]"
                 >
-                  <div className="relative z-10 grid size-9 place-items-center border border-brand-gold/50 bg-brand-ink-soft text-brand-gold transition duration-700 group-hover:bg-brand-gold group-hover:text-brand-ink">
+                  <div className="border-brand-gold/50 bg-brand-ink-soft text-brand-gold group-hover:bg-brand-gold group-hover:text-brand-ink relative z-10 grid size-9 place-items-center border transition duration-700">
                     <span className="size-2 bg-current" />
                   </div>
                   <div>
                     <p className="text-brand-gold text-xs font-bold tracking-[0.22em] uppercase">
                       {item.label}
                     </p>
-                    <h3 className="font-display mt-4 max-w-[620px] text-[32px] leading-tight font-bold md:text-[46px] group-hover:text-brand-gold transition-colors duration-500">
+                    <h3 className="font-display group-hover:text-brand-gold mt-4 max-w-[620px] text-[32px] leading-tight font-bold transition-colors duration-500 md:text-[46px]">
                       {item.title}
                     </h3>
                     <p className="mt-5 max-w-[620px] text-base leading-8 text-white/62">
@@ -395,7 +399,7 @@ function WhySection() {
             </p>
           </div>
 
-          <div className="relative min-h-[480px] overflow-hidden rounded-brand bg-brand-ink">
+          <div className="rounded-brand bg-brand-ink relative min-h-[420px] overflow-hidden md:min-h-[480px]">
             <Image
               src="/assets/home/real-estate.jpg"
               alt="Sathriyan Group diversified operations"
@@ -455,7 +459,7 @@ function TimelineSection() {
         <div className="grid gap-6">
           {timelineItems.map((item, index) => (
             <Reveal key={item.title}>
-              <article className="group grid overflow-hidden rounded-brand border border-black/8 bg-white transition duration-700 hover:-translate-y-1 hover:shadow-brand lg:grid-cols-[1fr_1.2fr]">
+              <article className="group rounded-brand hover:shadow-brand grid overflow-hidden border border-black/8 bg-white transition duration-700 hover:-translate-y-1 lg:grid-cols-[1fr_1.2fr]">
                 <div
                   className={`relative min-h-[320px] overflow-hidden ${index % 2 === 1 ? "lg:order-2" : ""}`}
                 >
@@ -502,7 +506,7 @@ function FounderMessage() {
   return (
     <section className="bg-brand-ink-soft px-6 py-20 text-white md:px-0 md:py-28">
       <div className="mx-auto grid max-w-[var(--container-max)] gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
-        <Reveal className="relative min-h-[520px] overflow-hidden rounded-brand bg-brand-ink">
+        <Reveal className="rounded-brand bg-brand-ink relative min-h-[360px] overflow-hidden md:min-h-[520px]">
           <Image
             src="/assets/home/advisor.jpg"
             alt="Founder and Chairman of Sathriyan Group"
@@ -522,24 +526,24 @@ function FounderMessage() {
         </Reveal>
 
         <Reveal>
-            <p className="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase">
-              From the founder
+          <p className="text-brand-gold text-xs font-bold tracking-[0.2em] uppercase">
+            From the founder
+          </p>
+          <blockquote className="font-display mt-6 max-w-[720px] text-[34px] leading-tight font-bold md:text-[52px]">
+            Build businesses people trust. Not just ones they use.
+          </blockquote>
+          <div className="mt-8 space-y-5 border-y border-white/12 py-7">
+            <p className="text-base leading-8 text-white/70">
+              Sathriyan Group was never about being the biggest. It was about
+              building something people come back to, because it works, because
+              it lasts, because they know what to expect.
             </p>
-            <blockquote className="font-display mt-6 max-w-[720px] text-[34px] leading-tight font-bold md:text-[52px]">
-              Build businesses people trust. Not just ones they use.
-            </blockquote>
-            <div className="mt-8 space-y-5 border-y border-white/12 py-7">
-              <p className="text-base leading-8 text-white/70">
-                Sathriyan Group was never about being the biggest. It was
-                about building something people come back to, because it
-                works, because it lasts, because they know what to expect.
-              </p>
-              <p className="text-base leading-8 text-white/70">
-                Every division carries that same idea. Not because someone
-                enforces it, but because it is just how we do things. Quality
-                is not a policy here. It is the only way we know how to work.
-              </p>
-            </div>
+            <p className="text-base leading-8 text-white/70">
+              Every division carries that same idea. Not because someone
+              enforces it, but because it is just how we do things. Quality is
+              not a policy here. It is the only way we know how to work.
+            </p>
+          </div>
           <div className="mt-7">
             <p className="text-sm font-bold text-white/80">
               Founder &amp; Chairman
@@ -558,7 +562,7 @@ function FounderMessage() {
 function BlogIntroSection() {
   return (
     <section className="bg-brand-surface px-6 py-24 md:px-0 md:py-32">
-      <Reveal className="mx-auto grid max-w-[var(--container-max)] overflow-hidden rounded-brand bg-white shadow-brand-soft ring-1 ring-black/5 lg:grid-cols-[0.9fr_1.1fr]">
+      <Reveal className="rounded-brand shadow-brand-soft mx-auto grid max-w-[var(--container-max)] overflow-hidden bg-white ring-1 ring-black/5 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="flex flex-col justify-between p-8 md:p-10 lg:p-12">
           <div>
             <p className="text-brand-gold-deep text-xs font-bold tracking-[0.22em] uppercase">
@@ -568,26 +572,29 @@ function BlogIntroSection() {
               Ideas, updates, and notes from the group.
             </h2>
             <p className="text-brand-muted mt-6 max-w-[540px] text-base leading-8">
-              A place for project thinking, leadership notes, division
-              updates, and practical stories behind the work.
+              A place for project thinking, leadership notes, division updates,
+              and practical stories behind the work.
             </p>
           </div>
           <Link
             href="/blog"
-            className="group mt-10 inline-flex w-fit items-center gap-4 border-b border-brand-gold-deep pb-2 text-sm font-bold text-brand-ink-soft transition duration-700 ease-brand hover:text-brand-gold-deep"
+            className="group border-brand-gold-deep text-brand-ink-soft ease-brand hover:text-brand-gold-deep mt-10 inline-flex w-fit items-center gap-4 border-b pb-2 text-sm font-bold transition duration-700"
           >
             View the journal
             <ArrowUpRight className="size-4 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
-        <Link href="/blog" className="group relative min-h-[460px] overflow-hidden bg-brand-ink">
+        <Link
+          href="/blog"
+          className="group bg-brand-ink relative min-h-[340px] overflow-hidden md:min-h-[460px]"
+        >
           <Image
             src="/assets/home/hero.jpg"
             alt="Sathriyan Group journal preview"
             fill
             sizes="(min-width: 1024px) 620px, 100vw"
-            className="object-cover opacity-82 transition duration-[1600ms] ease-brand group-hover:scale-[1.04]"
+            className="ease-brand object-cover opacity-82 transition duration-[1600ms] group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(17,24,39,0.04)_0%,rgba(17,24,39,0.84)_100%)]" />
           <div className="absolute right-6 bottom-6 left-6 md:right-8 md:bottom-8 md:left-8">
@@ -606,7 +613,7 @@ function BlogIntroSection() {
 
 function AboutCTA() {
   return (
-    <section className="relative overflow-hidden bg-brand-ink px-6 py-20 text-white md:px-0 md:py-28">
+    <section className="bg-brand-ink relative overflow-hidden px-6 py-20 text-white md:px-0 md:py-28">
       <Image
         src="/assets/home/hero.jpg"
         alt="Sathriyan Group corporate environment"
@@ -626,15 +633,15 @@ function AboutCTA() {
               <h2 className="font-display mt-5 max-w-[780px] text-[36px] leading-tight font-bold md:text-[60px]">
                 Have a project in mind? Let&apos;s talk.
               </h2>
-              <p className="text-white/60 mt-4 max-w-[600px] text-base leading-8">
-                Whether it is a project, a partnership, or just a question
-                about the group, we are here. Reach out and we will take it
-                from there.
+              <p className="mt-4 max-w-[600px] text-base leading-8 text-white/60">
+                Whether it is a project, a partnership, or just a question about
+                the group, we are here. Reach out and we will take it from
+                there.
               </p>
             </div>
             <Link
               href="/contact"
-              className="group bg-brand-gold-deep text-white ease-brand hover:bg-brand-gold inline-flex h-12 items-center justify-center gap-4 px-6 text-sm font-bold transition duration-700"
+              className="group bg-brand-gold-deep ease-brand hover:bg-brand-gold inline-flex h-12 items-center justify-center gap-4 px-6 text-sm font-bold text-white transition duration-700"
             >
               <span>Contact page</span>
               <ArrowUpRight className="size-4 transition duration-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
